@@ -27,7 +27,7 @@ public class NettyDirectProxyIntegrationTest {
     private final static Integer SERVER_HTTP_PORT = PortFactory.findFreePort();
     private final static Integer PROXY_DIRECT_PORT = PortFactory.findFreePort();
     private static EchoServer echoServer;
-    private static Proxy httpProxy;
+    private static Proxy proxy;
 
     @BeforeClass
     public static void setupFixture() throws Exception {
@@ -38,7 +38,7 @@ public class NettyDirectProxyIntegrationTest {
         echoServer = new EchoServer(SERVER_HTTP_PORT);
 
         // start proxy
-        httpProxy = new ProxyBuilder()
+        proxy = new ProxyBuilder()
                 .withLocalPort(PROXY_DIRECT_PORT)
                 .withDirect("127.0.0.1", SERVER_HTTP_PORT)
                 .build();
@@ -50,7 +50,7 @@ public class NettyDirectProxyIntegrationTest {
         echoServer.stop();
 
         // stop proxy
-        httpProxy.stop();
+        proxy.stop();
     }
 
     @Test

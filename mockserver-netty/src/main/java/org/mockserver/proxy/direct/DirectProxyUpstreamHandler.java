@@ -5,10 +5,13 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpClientCodec;
+import io.netty.handler.codec.http.HttpContentDecompressor;
+import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.ssl.SslHandler;
 import org.mockserver.logging.LoggingHandler;
-import org.mockserver.proxy.http.HttpProxy;
+import org.mockserver.proxy.Proxy;
 import org.mockserver.proxy.relay.DownstreamProxyRelayHandler;
 import org.mockserver.proxy.relay.UpstreamProxyRelayHandler;
 import org.mockserver.proxy.unification.PortUnificationHandler;
@@ -65,7 +68,7 @@ public class DirectProxyUpstreamHandler extends SimpleChannelInboundHandler<Full
                     }
                 });
 
-        final InetSocketAddress remoteSocket = ctx.channel().attr(HttpProxy.REMOTE_SOCKET).get();
+        final InetSocketAddress remoteSocket = ctx.channel().attr(Proxy.REMOTE_SOCKET).get();
         bootstrap.connect(remoteSocket).addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) throws Exception {

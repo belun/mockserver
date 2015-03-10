@@ -1,10 +1,10 @@
 package org.mockserver.proxy;
 
 import org.mockserver.proxy.direct.DirectProxy;
-import org.mockserver.proxy.http.HttpProxy;
+import org.mockserver.proxy.forward.ForwardProxy;
 
 /**
- * This class should be used to configure the HttpProxy, using this class is the simplest way to create an HttpProxy instance
+ * This class should be used to configure the Proxy, using this class is the simplest way to create an Proxy instance
  *
  * @author jamesdbloom
  */
@@ -37,14 +37,14 @@ public class ProxyBuilder {
     }
 
     /**
-     * Build an instance of the HttpProxy
+     * Build an instance of the Proxy
      */
     public Proxy build() {
         if (localPort != null) {
             if (remoteHost != null && remotePort != null) {
                 return new DirectProxy(localPort, remoteHost, remotePort);
             } else {
-                return new HttpProxy(localPort);
+                return new ForwardProxy(localPort);
             }
         } else {
             throw new IllegalArgumentException("LocalPort must be specified before the proxy is started");

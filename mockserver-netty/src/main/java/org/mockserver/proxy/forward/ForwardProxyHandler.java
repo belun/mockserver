@@ -1,4 +1,4 @@
-package org.mockserver.proxy.http;
+package org.mockserver.proxy.forward;
 
 import com.google.common.base.Strings;
 import io.netty.channel.*;
@@ -29,7 +29,7 @@ import static org.mockserver.model.HttpResponse.response;
 import static org.mockserver.model.OutboundHttpRequest.outboundRequest;
 
 @ChannelHandler.Sharable
-public class HttpProxyHandler extends SimpleChannelInboundHandler<HttpRequest> {
+class ForwardProxyHandler extends SimpleChannelInboundHandler<HttpRequest> {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     // mockserver
@@ -44,7 +44,7 @@ public class HttpProxyHandler extends SimpleChannelInboundHandler<HttpRequest> {
     private VerificationSerializer verificationSerializer = new VerificationSerializer();
     private VerificationSequenceSerializer verificationSequenceSerializer = new VerificationSequenceSerializer();
 
-    public HttpProxyHandler(Proxy server, LogFilter logFilter) {
+    public ForwardProxyHandler(Proxy server, LogFilter logFilter) {
         super(false);
         this.server = server;
         this.logFilter = logFilter;

@@ -34,7 +34,7 @@ public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
     @VisibleForTesting
-    static ProxyBuilder httpProxyBuilder = new ProxyBuilder();
+    static ProxyBuilder proxyBuilder = new ProxyBuilder();
     @VisibleForTesting
     static MockServerBuilder mockServerBuilder = new MockServerBuilder();
     @VisibleForTesting
@@ -44,11 +44,11 @@ public class Main {
     private static boolean usagePrinted = false;
 
     /**
-     * Run the MockServer directly providing the parseArguments for the server and httpProxyBuilder as the only input parameters (if not provided the server port defaults to 8080 and the httpProxyBuilder is not started).
+     * Run the MockServer directly providing the parseArguments for the server and proxyBuilder as the only input parameters (if not provided the server port defaults to 8080 and the proxyBuilder is not started).
      *
      * @param arguments the entries are in pairs:
      *                  - the first  pair is "-serverPort" followed by the server port if not provided the MockServer is not started,
-     *                  - the second pair is "-proxyPort"  followed by the httpProxyBuilder  port if not provided the httpProxyBuilder      is not started
+     *                  - the second pair is "-proxyPort"  followed by the proxyBuilder  port if not provided the proxyBuilder      is not started
      */
     public static void main(String... arguments) {
         usagePrinted = false;
@@ -65,7 +65,7 @@ public class Main {
 
         if (parseIntegerArguments.size() > 0) {
             if (parseIntegerArguments.containsKey(PROXY_PORT_KEY)) {
-                httpProxyBuilder.withLocalPort(parseIntegerArguments.get(PROXY_PORT_KEY)).build();
+                proxyBuilder.withLocalPort(parseIntegerArguments.get(PROXY_PORT_KEY)).build();
             }
             if (parseIntegerArguments.containsKey(SERVER_PORT_KEY)) {
                 mockServerBuilder.withHTTPPort(parseIntegerArguments.get(SERVER_PORT_KEY)).build();

@@ -9,11 +9,11 @@ import org.mockserver.proxy.ProxyBuilder;
  */
 public class ClientAndProxy extends ProxyClient {
 
-    private final Proxy httpProxy;
+    private final Proxy proxy;
 
     public ClientAndProxy(Integer port) {
         super("localhost", port);
-        httpProxy = new ProxyBuilder().withLocalPort(port).build();
+        proxy = new ProxyBuilder().withLocalPort(port).build();
     }
 
     public static ClientAndProxy startClientAndProxy(Integer port) {
@@ -21,6 +21,6 @@ public class ClientAndProxy extends ProxyClient {
     }
 
     public boolean isRunning() {
-        return httpProxy.isRunning();
+        return proxy.isRunning();
     }
 }

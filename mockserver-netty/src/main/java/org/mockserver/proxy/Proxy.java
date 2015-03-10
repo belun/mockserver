@@ -6,7 +6,7 @@ import org.mockserver.filters.LogFilter;
 import java.net.InetSocketAddress;
 
 /**
- * This class should not be constructed directly instead use HttpProxyBuilder to build and configure this class
+ * This class should not be constructed directly instead use ProxyBuilder to build and configure this class
  *
  * @see ProxyBuilder
  *

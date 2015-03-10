@@ -1,4 +1,4 @@
-package org.mockserver.proxy.http;
+package org.mockserver.proxy.forward;
 
 import com.google.common.util.concurrent.SettableFuture;
 import io.netty.bootstrap.ServerBootstrap;
@@ -24,15 +24,15 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This class should not be constructed directly instead use HttpProxyBuilder to build and configure this class
+ * This class should not be constructed directly instead use ProxyBuilder to build and configure this class
  *
  * @see org.mockserver.proxy.ProxyBuilder
  *
  * @author jamesdbloom
  */
-public class HttpProxy implements Proxy {
+public class ForwardProxy implements Proxy {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpProxy.class);
+    private static final Logger logger = LoggerFactory.getLogger(ForwardProxy.class);
     // proxy
     private final SettableFuture<String> hasStarted = SettableFuture.create();
     private final LogFilter logFilter = new LogFilter();
@@ -42,7 +42,7 @@ public class HttpProxy implements Proxy {
     // ports
     private final Integer port;
 
-    public HttpProxy(final Integer port) {
+    public ForwardProxy(final Integer port) {
 
         if (port == null) {
             throw new IllegalArgumentException("Port must not be null");
@@ -59,8 +59,8 @@ public class HttpProxy implements Proxy {
                             .option(ChannelOption.SO_BACKLOG, 1024)
                             .channel(NioServerSocketChannel.class)
                             .childOption(ChannelOption.AUTO_READ, true)
-                            .childHandler(new HttpProxyUnificationHandler())
-                            .childAttr(HTTP_PROXY, HttpProxy.this)
+                            .childHandler(new ForwardProxyUnificationHandler())
+                            .childAttr(HTTP_PROXY, ForwardProxy.this)
                             .childAttr(REMOTE_SOCKET, new InetSocketAddress(port))
                             .childAttr(LOG_FILTER, logFilter)
                             .bind(port)

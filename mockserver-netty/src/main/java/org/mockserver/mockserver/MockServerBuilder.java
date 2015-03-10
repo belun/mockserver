@@ -1,6 +1,5 @@
 package org.mockserver.mockserver;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.mockserver.configuration.SystemProperties;
 
 /**
@@ -26,7 +25,7 @@ public class MockServerBuilder {
     }
 
     /**
-     * Build an instance of the HttpProxy
+     * Build an instance of the MockServer
      */
     public MockServer build() {
         return new MockServer(port);

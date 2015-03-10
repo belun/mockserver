@@ -32,7 +32,7 @@ public class MainTest {
     public void setupMocks() {
         initMocks(this);
         Main.mockServerBuilder = mockMockServerBuilder;
-        Main.httpProxyBuilder = mockProxyBuilder;
+        Main.proxyBuilder = mockProxyBuilder;
         Main.outputPrintStream = mockPrintStream;
         Main.shutdownOnUsage = false;
 

@@ -8,12 +8,10 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.mockserver.model.Book;
-import org.mockserver.proxy.http.HttpProxy;
 import org.mockserver.service.BookService;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import sun.net.spi.DefaultProxySelector;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;

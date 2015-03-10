@@ -1,4 +1,4 @@
-package org.mockserver.proxy.http;
+package org.mockserver.proxy.forward;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,14 +15,14 @@ import org.slf4j.LoggerFactory;
 /**
  * @author jamesdbloom
  */
-public class NettyHttpProxySecureIntegrationTest extends AbstractClientSecureProxyIntegrationTest {
+public class NettyProxySecureIntegrationTest extends AbstractClientSecureProxyIntegrationTest {
 
-    private final static Logger logger = LoggerFactory.getLogger(NettyHttpProxySecureIntegrationTest.class);
+    private final static Logger logger = LoggerFactory.getLogger(NettyProxySecureIntegrationTest.class);
 
     private final static Integer SERVER_HTTPS_PORT = PortFactory.findFreePort();
     private final static Integer PROXY_HTTPS_PORT = PortFactory.findFreePort();
     private static EchoServer echoServer;
-    private static Proxy httpProxy;
+    private static Proxy proxy;
     private static ProxyClient proxyClient;
 
     @BeforeClass
@@ -34,7 +34,7 @@ public class NettyHttpProxySecureIntegrationTest extends AbstractClientSecurePro
         echoServer = new EchoServer(SERVER_HTTPS_PORT);
 
         // start proxy
-        httpProxy = new ProxyBuilder()
+        proxy = new ProxyBuilder()
                 .withLocalPort(PROXY_HTTPS_PORT)
                 .build();
 
@@ -48,7 +48,7 @@ public class NettyHttpProxySecureIntegrationTest extends AbstractClientSecurePro
         echoServer.stop();
 
         // stop proxy
-        httpProxy.stop();
+        proxy.stop();
     }
 
     @Before

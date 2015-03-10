@@ -80,7 +80,7 @@ subsection: true
     HttpClient httpClient = <span class="keyword">new</span> HttpClient();
     <span class="keyword">try</span> {
         if (Boolean.parseBoolean(System.getProperty(<span class="string_literal">"proxySet"</span>))) {
-            httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> HttpProxy(System.getProperty(<span class="string_literal">"http.proxyHost"</span>), Integer.parseInt(System.getProperty(<span class="string_literal">"http.proxyPort"</span>))));
+            httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> ForwardProxy(System.getProperty(<span class="string_literal">"http.proxyHost"</span>), Integer.parseInt(System.getProperty(<span class="string_literal">"http.proxyPort"</span>))));
         }
         httpClient.start();
     } <span class="keyword">catch</span> (Exception e) {

@@ -1,8 +1,7 @@
-package org.mockserver.proxy.http;
+package org.mockserver.proxy.forward;
 
 import org.junit.Test;
 import org.mockserver.client.proxy.ProxyClient;
-import org.mockserver.client.server.MockServerClient;
 import org.mockserver.proxy.Proxy;
 import org.mockserver.proxy.ProxyBuilder;
 import org.mockserver.socket.PortFactory;
@@ -20,7 +19,7 @@ public class StopClientProxyNettyIntegrationTest {
     @Test
     public void canStartAndStopMultipleTimes() {
         // start server
-        Proxy httpProxy = new ProxyBuilder().withLocalPort(serverPort).build();
+        Proxy proxy = new ProxyBuilder().withLocalPort(serverPort).build();
 
         // start client
         ProxyClient proxyClient = new ProxyClient("localhost", serverPort);
@@ -30,13 +29,13 @@ public class StopClientProxyNettyIntegrationTest {
             proxyClient.stop();
 
             // then
-            assertFalse(httpProxy.isRunning());
-            httpProxy = new ProxyBuilder().withLocalPort(serverPort).build();
-            assertTrue(httpProxy.isRunning());
+            assertFalse(proxy.isRunning());
+            proxy = new ProxyBuilder().withLocalPort(serverPort).build();
+            assertTrue(proxy.isRunning());
         }
 
-        assertTrue(httpProxy.isRunning());
-        httpProxy.stop();
-        assertFalse(httpProxy.isRunning());
+        assertTrue(proxy.isRunning());
+        proxy.stop();
+        assertFalse(proxy.isRunning());
     }
 }

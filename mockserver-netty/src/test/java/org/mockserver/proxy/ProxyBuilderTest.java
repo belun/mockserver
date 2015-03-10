@@ -3,10 +3,8 @@ package org.mockserver.proxy;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockserver.proxy.Proxy;
-import org.mockserver.proxy.ProxyBuilder;
 import org.mockserver.proxy.direct.DirectProxy;
-import org.mockserver.proxy.http.HttpProxy;
+import org.mockserver.proxy.forward.ForwardProxy;
 import org.mockserver.socket.PortFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,29 +15,29 @@ import static org.hamcrest.core.IsInstanceOf.instanceOf;
 /**
  * @author jamesdbloom
  */
-public class HttpProxyBuilderTest {
+public class ProxyBuilderTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void shouldConfigureProxy() {
+    public void shouldConfigureForwardProxy() {
         // given
         // - some ports
         Integer port = PortFactory.findFreePort();
 
         // when
-        Proxy httpProxy = new ProxyBuilder()
+        Proxy proxy = new ProxyBuilder()
                 .withLocalPort(port)
                 .build();
 
         try {
             // then
-            assertThat(httpProxy, is(instanceOf(HttpProxy.class)));
-            HttpProxy unificationProxy = (HttpProxy)httpProxy;
+            assertThat(proxy, is(instanceOf(ForwardProxy.class)));
+            ForwardProxy unificationProxy = (ForwardProxy)proxy;
             assertThat(unificationProxy.getPort(), is(port));
         } finally {
-            httpProxy.stop();
+            proxy.stop();
         }
     }
 
@@ -52,20 +50,20 @@ public class HttpProxyBuilderTest {
         Integer directRemotePort = PortFactory.findFreePort();
 
         // when
-        Proxy httpProxy = new ProxyBuilder()
+        Proxy proxy = new ProxyBuilder()
                 .withLocalPort(port)
                 .withDirect(directRemoteHost, directRemotePort)
                 .build();
 
         try {
             // then
-            assertThat(httpProxy, is(instanceOf(DirectProxy.class)));
-            DirectProxy directProxy = (DirectProxy)httpProxy;
+            assertThat(proxy, is(instanceOf(DirectProxy.class)));
+            DirectProxy directProxy = (DirectProxy)proxy;
             assertThat(directProxy.getLocalPort(), is(port));
             assertThat(directProxy.getRemoteHost(), is(directRemoteHost));
             assertThat(directProxy.getRemotePort(), is(directRemotePort));
         } finally {
-            httpProxy.stop();
+            proxy.stop();
         }
     }
 

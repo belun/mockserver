@@ -1,7 +1,6 @@
 package org.mockserver.proxy.direct;
 
 import com.google.common.base.Charsets;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.OutputStream;
 import java.net.Socket;
-import java.security.Security;
 
 import static org.mockserver.test.Assert.assertContains;
 
@@ -30,7 +28,7 @@ public class NettyDirectSecureProxyIntegrationTest {
     private final static Integer SERVER_HTTPS_PORT = PortFactory.findFreePort();
     private final static Integer PROXY_DIRECT_SECURE_PORT = PortFactory.findFreePort();
     private static EchoServer echoServer;
-    private static Proxy httpProxy;
+    private static Proxy proxy;
 
     @BeforeClass
     public static void setupFixture() throws Exception {
@@ -41,7 +39,7 @@ public class NettyDirectSecureProxyIntegrationTest {
         echoServer = new EchoServer(SERVER_HTTPS_PORT);
 
         // start proxy
-        httpProxy = new ProxyBuilder()
+        proxy = new ProxyBuilder()
                 .withLocalPort(PROXY_DIRECT_SECURE_PORT)
                 .withDirect("127.0.0.1", SERVER_HTTPS_PORT)
                 .build();
@@ -53,7 +51,7 @@ public class NettyDirectSecureProxyIntegrationTest {
         echoServer.stop();
 
         // stop proxy
-        httpProxy.stop();
+        proxy.stop();
     }
 
     @Test

@@ -1,4 +1,4 @@
-package org.mockserver.proxy.http;
+package org.mockserver.proxy.forward;
 
 import io.netty.channel.embedded.EmbeddedChannel;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -35,7 +35,7 @@ import static org.mockserver.model.Parameter.param;
 /**
  * @author jamesdbloom
  */
-public class HttpProxyHandlerTest {
+public class ForwardProxyHandlerTest {
 
 
     // model objects
@@ -55,7 +55,7 @@ public class HttpProxyHandlerTest {
     private VerificationSequence mockVerificationSequence;
     // mockserver
     private LogFilter mockLogFilter;
-    private Proxy mockHttpProxy;
+    private Proxy mockProxy;
     @Mock
     private ActionHandler mockActionHandler;
     // serializers
@@ -69,16 +69,16 @@ public class HttpProxyHandlerTest {
     private VerificationSequenceSerializer mockVerificationSequenceSerializer;
 
     @InjectMocks
-    private HttpProxyHandler httpProxyHandler;
+    private ForwardProxyHandler proxyHandler;
     private EmbeddedChannel embeddedChannel;
 
     @Before
     public void setupFixture() {
         // given - a mock server handler
         mockLogFilter = mock(LogFilter.class);
-        mockHttpProxy = mock(Proxy.class);
-        httpProxyHandler = new HttpProxyHandler(mockHttpProxy, mockLogFilter);
-        embeddedChannel = new EmbeddedChannel(httpProxyHandler);
+        mockProxy = mock(Proxy.class);
+        proxyHandler = new ForwardProxyHandler(mockProxy, mockLogFilter);
+        embeddedChannel = new EmbeddedChannel(proxyHandler);
 
         initMocks(this);
 
@@ -337,7 +337,7 @@ public class HttpProxyHandlerTest {
         embeddedChannel.writeInbound(request);
 
         // then - mock server is stopped
-        verify(mockHttpProxy).stop();
+        verify(mockProxy).stop();
 
         // and - correct response written to ChannelHandlerContext
         HttpResponse httpResponse = (HttpResponse)embeddedChannel.readOutbound();

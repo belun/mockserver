@@ -3,7 +3,6 @@ package org.mockserver.proxy.socks;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.mockserver.client.proxy.ProxyClient;
 import org.mockserver.echo.EchoServer;
 import org.mockserver.integration.proxy.AbstractClientProxyIntegrationTest;
@@ -33,7 +32,7 @@ public class NettySocksProxyIntegrationTest extends AbstractClientProxyIntegrati
     private final static Integer PROXY_HTTP_PORT = PortFactory.findFreePort();
     private final static Integer PROXY_DIRECT_PORT = PortFactory.findFreePort();
     private static EchoServer echoServer;
-    private static Proxy httpProxy;
+    private static Proxy proxy;
     private static ProxyClient proxyClient;
     private static ProxySelector previousProxySelector;
 
@@ -67,7 +66,7 @@ public class NettySocksProxyIntegrationTest extends AbstractClientProxyIntegrati
         echoServer = new EchoServer(SERVER_HTTP_PORT);
 
         // start proxy
-        httpProxy = new ProxyBuilder()
+        proxy = new ProxyBuilder()
                 .withLocalPort(PROXY_HTTP_PORT)
                 .build();
 
@@ -86,7 +85,7 @@ public class NettySocksProxyIntegrationTest extends AbstractClientProxyIntegrati
         echoServer.stop();
 
         // stop proxy
-        httpProxy.stop();
+        proxy.stop();
 
         // rollback proxy
         ProxySelector.setDefault(previousProxySelector);

@@ -14,10 +14,6 @@ import io.netty.handler.codec.socks.SocksMessageEncoder;
 import io.netty.handler.codec.socks.SocksProtocolVersion;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.util.AttributeKey;
-import org.mockserver.logging.LoggingHandler;
-import org.mockserver.proxy.Proxy;
-import org.mockserver.proxy.connect.HttpConnectHandler;
-import org.mockserver.proxy.http.HttpProxyHandler;
 import org.mockserver.proxy.socks.SocksProxyHandler;
 import org.mockserver.socket.SSLFactory;
 

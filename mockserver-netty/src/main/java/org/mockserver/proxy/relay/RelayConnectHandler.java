@@ -10,7 +10,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.ssl.SslHandler;
 import org.mockserver.logging.LoggingHandler;
-import org.mockserver.proxy.http.HttpProxy;
+import org.mockserver.proxy.Proxy;
 import org.mockserver.proxy.unification.PortUnificationHandler;
 import org.mockserver.socket.SSLFactory;
 import org.slf4j.Logger;
@@ -79,7 +79,7 @@ public abstract class RelayConnectHandler<T> extends SimpleChannelInboundHandler
                     }
                 });
 
-        final InetSocketAddress remoteSocket = serverCtx.channel().attr(HttpProxy.REMOTE_SOCKET).get();
+        final InetSocketAddress remoteSocket = serverCtx.channel().attr(Proxy.REMOTE_SOCKET).get();
         bootstrap.connect(remoteSocket).addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) throws Exception {

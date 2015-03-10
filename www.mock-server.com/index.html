@@ -3122,7 +3122,7 @@ VerificationTimes.atLeast(<span class="keyword">int</span> count);</code></pre>
 
 <pre><code class="code">HttpClient httpClient = <span class="keyword">new</span> HttpClient();
 <span class="keyword">try</span> {
-    httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> HttpProxy(<span class="string_literal">"localhost"</span>, <span class="numeric_literal">9090</span>));
+    httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> ForwardProxy(<span class="string_literal">"localhost"</span>, <span class="numeric_literal">9090</span>));
     httpClient.start();
 } <span class="keyword">catch</span> (Exception e) {
     <span class="keyword">throw new</span> RuntimeException(<span class="string_literal">"Exception creating HttpClient"</span>, e);
@@ -3174,7 +3174,7 @@ restTemplate.setRequestFactory(<span class="keyword">new</span> HttpComponentsCl
 <h4>Grizzly</h4>
 
 <pre><code class="code">AsyncHttpClientConfig.Builder clientConfigBuilder = <span class="keyword">new</span> AsyncHttpClientConfig.Builder();
-clientConfigBuilder.setProxyServerSelector(ProxyUtils.createProxyServerSelector(HttpProxy.proxySelector()));
+clientConfigBuilder.setProxyServerSelector(ProxyUtils.createProxyServerSelector(ForwardProxy.proxySelector()));
 AsyncHttpClient asyncHttpClient = <span class="keyword">new</span> AsyncHttpClient(clientConfigBuilder.build());</code></pre>
 
 <p>The <a href="https://github.com/jamesdbloom/mockserver/tree/master/mockserver-examples">mockserver-example</a> project contains an example of using the proxy with Grizzly Http Client called
@@ -3274,7 +3274,7 @@ AsyncHttpClient asyncHttpClient = <span class="keyword">new</span> AsyncHttpClie
     HttpClient httpClient = <span class="keyword">new</span> HttpClient();
     <span class="keyword">try</span> {
         if (Boolean.parseBoolean(System.getProperty(<span class="string_literal">"proxySet"</span>))) {
-            httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> HttpProxy(System.getProperty(<span class="string_literal">"http.proxyHost"</span>), Integer.parseInt(System.getProperty(<span class="string_literal">"http.proxyPort"</span>))));
+            httpClient.getProxyConfiguration().getProxies().add(<span class="keyword">new</span> ForwardProxy(System.getProperty(<span class="string_literal">"http.proxyHost"</span>), Integer.parseInt(System.getProperty(<span class="string_literal">"http.proxyPort"</span>))));
         }
         httpClient.start();
     } <span class="keyword">catch</span> (Exception e) {
