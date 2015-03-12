@@ -16,7 +16,6 @@ import org.mockserver.socket.SSLFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.net.ssl.SSLEngine;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.hamcrest.core.Is.isA;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ProcessBuildFactoryTest {
 

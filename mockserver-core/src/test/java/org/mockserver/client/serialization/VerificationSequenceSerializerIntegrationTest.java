@@ -1,6 +1,7 @@
 package org.mockserver.client.serialization;
 
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.HttpRequestDTO;
 import org.mockserver.client.serialization.model.VerificationSequenceDTO;
 import org.mockserver.verify.VerificationSequence;
@@ -19,12 +20,12 @@ public class VerificationSequenceSerializerIntegrationTest {
     @Test
     public void shouldIgnoreExtraFields() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"httpRequests\" : [ {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "    \"random_field\" : \"random_value\"" + System.getProperty("line.separator") +
-                "  } ]," + System.getProperty("line.separator") +
-                "  \"random_field\" : \"random_value\"" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"httpRequests\" : [ {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "    \"random_field\" : \"random_value\"" + Line.SEPARATOR +
+                "  } ]," + Line.SEPARATOR +
+                "  \"random_field\" : \"random_value\"" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -41,20 +42,20 @@ public class VerificationSequenceSerializerIntegrationTest {
     @Test
     public void shouldDeserializeCompleteObject() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"httpRequests\" : [ {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_one\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_body_multiple\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_multiple\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_three\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_three\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_body_multiple\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_multiple\"" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"httpRequests\" : [ {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_one\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_body_multiple\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_multiple\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_three\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_three\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_body_multiple\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_multiple\"" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -74,8 +75,8 @@ public class VerificationSequenceSerializerIntegrationTest {
     @Test
     public void shouldDeserializeEmptyObject() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "    \"path\": \"somePath\"" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "    \"path\": \"somePath\"" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -90,10 +91,10 @@ public class VerificationSequenceSerializerIntegrationTest {
     @Test
     public void shouldDeserializePartialObject() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"httpRequests\" : [ {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_one\"" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"httpRequests\" : [ {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_one\"" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -122,20 +123,20 @@ public class VerificationSequenceSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"httpRequests\" : [ {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_one\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_body_multiple\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_multiple\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_three\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_three\"" + System.getProperty("line.separator") +
-                "  }, {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_body_multiple\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_multiple\"" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"httpRequests\" : [ {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_one\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_body_multiple\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_multiple\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_three\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_three\"" + Line.SEPARATOR +
+                "  }, {" + Line.SEPARATOR +
+                "    \"path\" : \"some_body_multiple\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_multiple\"" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -151,11 +152,11 @@ public class VerificationSequenceSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"httpRequests\" : [ {" + System.getProperty("line.separator") +
-                "    \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "    \"body\" : \"some_body_one\"" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"httpRequests\" : [ {" + Line.SEPARATOR +
+                "    \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "    \"body\" : \"some_body_one\"" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 

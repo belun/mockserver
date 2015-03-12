@@ -1,12 +1,8 @@
 package org.mockserver.configuration;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**

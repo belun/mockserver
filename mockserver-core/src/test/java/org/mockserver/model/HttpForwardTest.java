@@ -2,6 +2,7 @@ package org.mockserver.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.mockserver.Line;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
@@ -35,10 +36,10 @@ public class HttpForwardTest {
 
     @Test
     public void shouldReturnFormattedRequestInToString() {
-        TestCase.assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"host\" : \"some_host\"," + System.getProperty("line.separator") +
-                        "  \"port\" : 9090," + System.getProperty("line.separator") +
-                        "  \"scheme\" : \"HTTPS\"" + System.getProperty("line.separator") +
+        TestCase.assertEquals("{" + Line.SEPARATOR +
+                        "  \"host\" : \"some_host\"," + Line.SEPARATOR +
+                        "  \"port\" : 9090," + Line.SEPARATOR +
+                        "  \"scheme\" : \"HTTPS\"" + Line.SEPARATOR +
                         "}",
                 forward()
                         .withHost("some_host")

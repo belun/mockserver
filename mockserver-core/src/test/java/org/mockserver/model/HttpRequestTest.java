@@ -2,14 +2,13 @@ package org.mockserver.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.mockserver.Line;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 
 /**
@@ -66,16 +65,16 @@ public class HttpRequestTest {
 
     @Test
     public void shouldReturnFormattedRequestInToString() {
-        TestCase.assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"body\" : \"some_body\"," + System.getProperty("line.separator") +
-                        "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"values\" : [ \"value\" ]" + System.getProperty("line.separator") +
-                        "  } ]," + System.getProperty("line.separator") +
-                        "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"value\" : \"[A-Z]{0,10}\"" + System.getProperty("line.separator") +
-                        "  } ]" + System.getProperty("line.separator") +
+        TestCase.assertEquals("{" + Line.SEPARATOR +
+                        "  \"body\" : \"some_body\"," + Line.SEPARATOR +
+                        "  \"headers\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"values\" : [ \"value\" ]" + Line.SEPARATOR +
+                        "  } ]," + Line.SEPARATOR +
+                        "  \"cookies\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"value\" : \"[A-Z]{0,10}\"" + Line.SEPARATOR +
+                        "  } ]" + Line.SEPARATOR +
                         "}",
                 request()
                         .withBody("some_body")

@@ -1,8 +1,8 @@
 package org.mockserver.matchers;
 
 import org.mockserver.collections.CaseInsensitiveRegexMultiMap;
-import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 import org.mockserver.model.KeyToMultiValue;
+import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 
 import java.util.List;
 

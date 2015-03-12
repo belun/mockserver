@@ -3,7 +3,10 @@ package org.mockserver.streams;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-import javax.servlet.*;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;

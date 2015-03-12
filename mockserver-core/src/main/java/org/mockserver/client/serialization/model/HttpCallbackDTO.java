@@ -1,7 +1,7 @@
 package org.mockserver.client.serialization.model;
 
-import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 import org.mockserver.model.HttpCallback;
+import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 
 /**
  * @author jamesdbloom

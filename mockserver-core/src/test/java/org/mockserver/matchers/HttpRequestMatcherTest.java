@@ -1,6 +1,7 @@
 package org.mockserver.matchers;
 
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.model.*;
 
 import static junit.framework.TestCase.assertEquals;
@@ -314,16 +315,16 @@ public class HttpRequestMatcherTest {
 
     @Test
     public void shouldReturnFormattedRequestWithStringBodyInToString() {
-        assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"body\" : \"some_body\"," + System.getProperty("line.separator") +
-                        "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"values\" : [ \"value\" ]" + System.getProperty("line.separator") +
-                        "  } ]," + System.getProperty("line.separator") +
-                        "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"value\" : \"[A-Z]{0,10}\"" + System.getProperty("line.separator") +
-                        "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                        "  \"body\" : \"some_body\"," + Line.SEPARATOR +
+                        "  \"headers\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"values\" : [ \"value\" ]" + Line.SEPARATOR +
+                        "  } ]," + Line.SEPARATOR +
+                        "  \"cookies\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"value\" : \"[A-Z]{0,10}\"" + Line.SEPARATOR +
+                        "  } ]" + Line.SEPARATOR +
                         "}",
                 new HttpRequestMatcher(
                         request()
@@ -336,19 +337,19 @@ public class HttpRequestMatcherTest {
 
     @Test
     public void shouldReturnFormattedRequestWithJsonBodyInToString() {
-        assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"body\" : {" + System.getProperty("line.separator") +
-                        "    \"type\" : \"JSON\"," + System.getProperty("line.separator") +
-                        "    \"value\" : \"{ \\\"key\\\": \\\"some_value\\\" }\"" + System.getProperty("line.separator") +
-                        "  }," + System.getProperty("line.separator") +
-                        "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"values\" : [ \"value\" ]" + System.getProperty("line.separator") +
-                        "  } ]," + System.getProperty("line.separator") +
-                        "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"value\" : \"[A-Z]{0,10}\"" + System.getProperty("line.separator") +
-                        "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                        "  \"body\" : {" + Line.SEPARATOR +
+                        "    \"type\" : \"JSON\"," + Line.SEPARATOR +
+                        "    \"value\" : \"{ \\\"key\\\": \\\"some_value\\\" }\"" + Line.SEPARATOR +
+                        "  }," + Line.SEPARATOR +
+                        "  \"headers\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"values\" : [ \"value\" ]" + Line.SEPARATOR +
+                        "  } ]," + Line.SEPARATOR +
+                        "  \"cookies\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"value\" : \"[A-Z]{0,10}\"" + Line.SEPARATOR +
+                        "  } ]" + Line.SEPARATOR +
                         "}",
                 new HttpRequestMatcher(
                         request()

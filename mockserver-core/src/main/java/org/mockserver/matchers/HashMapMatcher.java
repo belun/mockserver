@@ -1,7 +1,6 @@
 package org.mockserver.matchers;
 
 import org.mockserver.collections.CaseInsensitiveRegexHashMap;
-import org.mockserver.collections.CaseInsensitiveRegexMultiMap;
 import org.mockserver.model.KeyAndValue;
 import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 

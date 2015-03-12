@@ -1,6 +1,7 @@
 package org.mockserver.matchers;
 
 import org.junit.Test;
+import org.mockserver.Line;
 
 import static org.junit.Assert.*;
 
@@ -13,51 +14,51 @@ public class JsonStringMatcherTest {
     public void shouldMatchExactMatchingJson() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 
@@ -65,55 +66,55 @@ public class JsonStringMatcherTest {
     public void shouldMatchMatchingSubJson() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\"" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\"" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 
@@ -121,49 +122,49 @@ public class JsonStringMatcherTest {
     public void shouldMatchMatchingSubJsonWithSomeSubJsonFields() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"glossary\": {" + System.getProperty("line.separator") +
-                "        \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                "        \"GlossDiv\": {" + System.getProperty("line.separator") +
-                "            \"title\": \"S\", " + System.getProperty("line.separator") +
-                "            \"GlossList\": {" + System.getProperty("line.separator") +
-                "                \"GlossEntry\": {" + System.getProperty("line.separator") +
-                "                    \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                "                    \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                "                    \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                "                    \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                "                    \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                "                    \"GlossDef\": {" + System.getProperty("line.separator") +
-                "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                "                        \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                "                            \"GML\", " + System.getProperty("line.separator") +
-                "                            \"XML\"" + System.getProperty("line.separator") +
-                "                        ]" + System.getProperty("line.separator") +
-                "                    }, " + System.getProperty("line.separator") +
-                "                    \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            }" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"glossary\": {" + Line.SEPARATOR +
+                "        \"title\": \"example glossary\", " + Line.SEPARATOR +
+                "        \"GlossDiv\": {" + Line.SEPARATOR +
+                "            \"title\": \"S\", " + Line.SEPARATOR +
+                "            \"GlossList\": {" + Line.SEPARATOR +
+                "                \"GlossEntry\": {" + Line.SEPARATOR +
+                "                    \"ID\": \"SGML\", " + Line.SEPARATOR +
+                "                    \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                "                    \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                "                    \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                "                    \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                "                    \"GlossDef\": {" + Line.SEPARATOR +
+                "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                "                        \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                "                            \"GML\", " + Line.SEPARATOR +
+                "                            \"XML\"" + Line.SEPARATOR +
+                "                        ]" + Line.SEPARATOR +
+                "                    }, " + Line.SEPARATOR +
+                "                    \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            }" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"glossary\": {" + System.getProperty("line.separator") +
-                "        \"GlossDiv\": {" + System.getProperty("line.separator") +
-                "            \"title\": \"S\", " + System.getProperty("line.separator") +
-                "            \"GlossList\": {" + System.getProperty("line.separator") +
-                "                \"GlossEntry\": {" + System.getProperty("line.separator") +
-                "                    \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                "                    \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                "                    \"GlossDef\": {" + System.getProperty("line.separator") +
-                "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\"" + System.getProperty("line.separator") +
-                "                    }, " + System.getProperty("line.separator") +
-                "                    \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            }" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"glossary\": {" + Line.SEPARATOR +
+                "        \"GlossDiv\": {" + Line.SEPARATOR +
+                "            \"title\": \"S\", " + Line.SEPARATOR +
+                "            \"GlossList\": {" + Line.SEPARATOR +
+                "                \"GlossEntry\": {" + Line.SEPARATOR +
+                "                    \"ID\": \"SGML\", " + Line.SEPARATOR +
+                "                    \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                "                    \"GlossDef\": {" + Line.SEPARATOR +
+                "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\"" + Line.SEPARATOR +
+                "                    }, " + Line.SEPARATOR +
+                "                    \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            }" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 
@@ -171,55 +172,55 @@ public class JsonStringMatcherTest {
     public void shouldMatchMatchingSubJsonWithDifferentArrayOrder() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\"" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\"" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
-        assertTrue(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertTrue(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 
@@ -243,51 +244,51 @@ public class JsonStringMatcherTest {
     public void shouldNotMatchNonMatchingJson() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertFalse(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"wrong_value\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertFalse(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"wrong_value\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 
@@ -295,59 +296,59 @@ public class JsonStringMatcherTest {
     public void shouldNotMatchNonMatchingSubJson() {
         // given
         String matched = "" +
-                "{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"File\", " + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"File\", " + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // then
-        assertFalse(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"id\": \"file\", " + System.getProperty("line.separator") +
-                "        \"value\": \"other_value\"" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertFalse(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"id\": \"file\", " + Line.SEPARATOR +
+                "        \"value\": \"other_value\"" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
-        assertFalse(new JsonStringMatcher("{" + System.getProperty("line.separator") +
-                "    \"menu\": {" + System.getProperty("line.separator") +
-                "        \"popup\": {" + System.getProperty("line.separator") +
-                "            \"menuitem\": [" + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"New\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CreateNewDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Open\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"OpenDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                {" + System.getProperty("line.separator") +
-                "                    \"value\": \"Close\", " + System.getProperty("line.separator") +
-                "                    \"onclick\": \"CloseDoc()\"" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "            ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        assertFalse(new JsonStringMatcher("{" + Line.SEPARATOR +
+                "    \"menu\": {" + Line.SEPARATOR +
+                "        \"popup\": {" + Line.SEPARATOR +
+                "            \"menuitem\": [" + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"New\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CreateNewDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Open\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"OpenDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                {" + Line.SEPARATOR +
+                "                    \"value\": \"Close\", " + Line.SEPARATOR +
+                "                    \"onclick\": \"CloseDoc()\"" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "            ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}").matches(matched));
     }
 

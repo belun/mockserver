@@ -1,6 +1,7 @@
 package org.mockserver.model;
 
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.Base64Converter;
 
 import java.util.Arrays;
@@ -105,17 +106,17 @@ public class HttpResponseTest {
 
     @Test
     public void shouldReturnFormattedRequestInToString() {
-        assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"statusCode\" : 200," + System.getProperty("line.separator") +
-                        "  \"body\" : \"some_body\"," + System.getProperty("line.separator") +
-                        "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"values\" : [ \"value\" ]" + System.getProperty("line.separator") +
-                        "  } ]," + System.getProperty("line.separator") +
-                        "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                        "    \"name\" : \"name\"," + System.getProperty("line.separator") +
-                        "    \"value\" : \"[A-Z]{0,10}\"" + System.getProperty("line.separator") +
-                        "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                        "  \"statusCode\" : 200," + Line.SEPARATOR +
+                        "  \"body\" : \"some_body\"," + Line.SEPARATOR +
+                        "  \"headers\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"values\" : [ \"value\" ]" + Line.SEPARATOR +
+                        "  } ]," + Line.SEPARATOR +
+                        "  \"cookies\" : [ {" + Line.SEPARATOR +
+                        "    \"name\" : \"name\"," + Line.SEPARATOR +
+                        "    \"value\" : \"[A-Z]{0,10}\"" + Line.SEPARATOR +
+                        "  } ]" + Line.SEPARATOR +
                         "}",
                 response()
                         .withBody("some_body")

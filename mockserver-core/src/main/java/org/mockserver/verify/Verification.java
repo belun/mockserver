@@ -1,9 +1,7 @@
 package org.mockserver.verify;
 
-import org.mockserver.client.serialization.ObjectMapperFactory;
-import org.mockserver.model.ObjectWithJsonToString;
-import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 import org.mockserver.model.HttpRequest;
+import org.mockserver.model.ObjectWithJsonToString;
 
 import static org.mockserver.model.HttpRequest.request;
 

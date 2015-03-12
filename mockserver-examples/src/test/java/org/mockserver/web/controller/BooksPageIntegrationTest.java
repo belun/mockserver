@@ -1,6 +1,7 @@
 package org.mockserver.web.controller;
 
 import org.junit.*;
+import org.mockserver.Line;
 import org.mockserver.integration.ClientAndProxy;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.Book;
@@ -85,27 +86,27 @@ public abstract class BooksPageIntegrationTest {
                                         new Header("Content-Type", "application/json")
                                 )
                                 .withBody("" +
-                                        "[" + System.getProperty("line.separator") +
-                                        "    {" + System.getProperty("line.separator") +
-                                        "        \"id\": \"1\"," + System.getProperty("line.separator") +
-                                        "        \"title\": \"Xenophon's imperial fiction : on the education of Cyrus\"," + System.getProperty("line.separator") +
-                                        "        \"author\": \"James Tatum\"," + System.getProperty("line.separator") +
-                                        "        \"isbn\": \"0691067570\"," + System.getProperty("line.separator") +
-                                        "        \"publicationDate\": \"1989\"" + System.getProperty("line.separator") +
-                                        "    }," + System.getProperty("line.separator") +
-                                        "    {" + System.getProperty("line.separator") +
-                                        "        \"id\": \"2\"," + System.getProperty("line.separator") +
-                                        "        \"title\": \"You are here : personal geographies and other maps of the imagination\"," + System.getProperty("line.separator") +
-                                        "        \"author\": \"Katharine A. Harmon\"," + System.getProperty("line.separator") +
-                                        "        \"isbn\": \"1568984308\"," + System.getProperty("line.separator") +
-                                        "        \"publicationDate\": \"2004\"" + System.getProperty("line.separator") +
-                                        "    }," + System.getProperty("line.separator") +
-                                        "    {" + System.getProperty("line.separator") +
-                                        "        \"id\": \"3\"," + System.getProperty("line.separator") +
-                                        "        \"title\": \"You just don't understand : women and men in conversation\"," + System.getProperty("line.separator") +
-                                        "        \"author\": \"Deborah Tannen\"," + System.getProperty("line.separator") +
-                                        "        \"isbn\": \"0345372050\"," + System.getProperty("line.separator") +
-                                        "        \"publicationDate\": \"1990\"" + System.getProperty("line.separator") +
+                                        "[" + Line.SEPARATOR +
+                                        "    {" + Line.SEPARATOR +
+                                        "        \"id\": \"1\"," + Line.SEPARATOR +
+                                        "        \"title\": \"Xenophon's imperial fiction : on the education of Cyrus\"," + Line.SEPARATOR +
+                                        "        \"author\": \"James Tatum\"," + Line.SEPARATOR +
+                                        "        \"isbn\": \"0691067570\"," + Line.SEPARATOR +
+                                        "        \"publicationDate\": \"1989\"" + Line.SEPARATOR +
+                                        "    }," + Line.SEPARATOR +
+                                        "    {" + Line.SEPARATOR +
+                                        "        \"id\": \"2\"," + Line.SEPARATOR +
+                                        "        \"title\": \"You are here : personal geographies and other maps of the imagination\"," + Line.SEPARATOR +
+                                        "        \"author\": \"Katharine A. Harmon\"," + Line.SEPARATOR +
+                                        "        \"isbn\": \"1568984308\"," + Line.SEPARATOR +
+                                        "        \"publicationDate\": \"2004\"" + Line.SEPARATOR +
+                                        "    }," + Line.SEPARATOR +
+                                        "    {" + Line.SEPARATOR +
+                                        "        \"id\": \"3\"," + Line.SEPARATOR +
+                                        "        \"title\": \"You just don't understand : women and men in conversation\"," + Line.SEPARATOR +
+                                        "        \"author\": \"Deborah Tannen\"," + Line.SEPARATOR +
+                                        "        \"isbn\": \"0345372050\"," + Line.SEPARATOR +
+                                        "        \"publicationDate\": \"1990\"" + Line.SEPARATOR +
                                         "    }" +
                                         "]")
                 );
@@ -147,12 +148,12 @@ public abstract class BooksPageIntegrationTest {
                                         new Header("Content-Type", "application/json")
                                 )
                                 .withBody("" +
-                                        "{" + System.getProperty("line.separator") +
-                                        "    \"id\": \"1\"," + System.getProperty("line.separator") +
-                                        "    \"title\": \"Xenophon's imperial fiction : on the education of Cyrus\"," + System.getProperty("line.separator") +
-                                        "    \"author\": \"James Tatum\"," + System.getProperty("line.separator") +
-                                        "    \"isbn\": \"0691067570\"," + System.getProperty("line.separator") +
-                                        "    \"publicationDate\": \"1989\"" + System.getProperty("line.separator") +
+                                        "{" + Line.SEPARATOR +
+                                        "    \"id\": \"1\"," + Line.SEPARATOR +
+                                        "    \"title\": \"Xenophon's imperial fiction : on the education of Cyrus\"," + Line.SEPARATOR +
+                                        "    \"author\": \"James Tatum\"," + Line.SEPARATOR +
+                                        "    \"isbn\": \"0691067570\"," + Line.SEPARATOR +
+                                        "    \"publicationDate\": \"1989\"" + Line.SEPARATOR +
                                         "}")
                 );
 

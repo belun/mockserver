@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.HttpRequestDTO;
 import org.mockserver.client.serialization.model.VerificationDTO;
 import org.mockserver.client.serialization.model.VerificationTimesDTO;
@@ -99,12 +100,12 @@ public class VerificationSerializerTest {
     public void serializeHandlesException() throws IOException {
         // given
         thrown.expect(RuntimeException.class);
-        thrown.expectMessage("Exception while serializing verification to JSON with value {" + System.getProperty("line.separator") +
-                "  \"httpRequest\" : { }," + System.getProperty("line.separator") +
-                "  \"times\" : {" + System.getProperty("line.separator") +
-                "    \"count\" : 1," + System.getProperty("line.separator") +
-                "    \"exact\" : false" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        thrown.expectMessage("Exception while serializing verification to JSON with value {" + Line.SEPARATOR +
+                "  \"httpRequest\" : { }," + Line.SEPARATOR +
+                "  \"times\" : {" + Line.SEPARATOR +
+                "    \"count\" : 1," + Line.SEPARATOR +
+                "    \"exact\" : false" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}");
         // and
         when(objectMapper.writerWithDefaultPrettyPrinter()).thenReturn(objectWriter);

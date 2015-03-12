@@ -16,6 +16,7 @@ import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.proxy.ProxyClient;
 import org.mockserver.model.HttpStatusCode;
 import org.mockserver.socket.SSLFactory;
@@ -25,7 +26,6 @@ import java.io.OutputStream;
 import java.net.ProxySelector;
 import java.net.Socket;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.Assert.*;
 import static org.mockserver.model.HttpRequest.request;
@@ -251,11 +251,11 @@ public abstract class AbstractClientProxyIntegrationTest {
                     );
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found exactly 0 times, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<{" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found exactly 0 times, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"" + Line.SEPARATOR +
+                    "}> but was:<{" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -286,11 +286,11 @@ public abstract class AbstractClientProxyIntegrationTest {
                     );
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found exactly once, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/other_path" + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<{" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found exactly once, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/other_path" + "\"" + Line.SEPARATOR +
+                    "}> but was:<{" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -320,11 +320,11 @@ public abstract class AbstractClientProxyIntegrationTest {
                     );
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/other_path" + "\"" + System.getProperty("line.separator") +
-                    "} ]> but was:<[ {" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/other_path" + "\"" + Line.SEPARATOR +
+                    "} ]> but was:<[ {" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -365,11 +365,11 @@ public abstract class AbstractClientProxyIntegrationTest {
                     );
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found at least 3 times, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<[ {" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found at least 3 times, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"" + Line.SEPARATOR +
+                    "}> but was:<[ {" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + "/test_headers_and_body" + "\"," + Line.SEPARATOR));
         }
     }
 

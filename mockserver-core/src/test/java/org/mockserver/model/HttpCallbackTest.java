@@ -2,6 +2,7 @@ package org.mockserver.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.mockserver.Line;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
@@ -25,8 +26,8 @@ public class HttpCallbackTest {
 
     @Test
     public void shouldReturnFormattedRequestInToString() {
-        TestCase.assertEquals("{" + System.getProperty("line.separator") +
-                        "  \"callbackClass\" : \"some_class\"" + System.getProperty("line.separator") +
+        TestCase.assertEquals("{" + Line.SEPARATOR +
+                        "  \"callbackClass\" : \"some_class\"" + Line.SEPARATOR +
                         "}",
                 callback()
                         .withCallbackClass("some_class")

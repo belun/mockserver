@@ -2,7 +2,10 @@ package org.mockserver.proxy.connect;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.HttpContentDecompressor;
+import io.netty.handler.codec.http.HttpObjectAggregator;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.HttpServerCodec;
 import org.mockserver.codec.MockServerServerCodec;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.proxy.relay.RelayConnectHandler;

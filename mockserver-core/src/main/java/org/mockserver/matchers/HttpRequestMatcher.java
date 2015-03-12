@@ -1,6 +1,7 @@
 package org.mockserver.matchers;
 
 import com.google.common.base.Charsets;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.ObjectMapperFactory;
 import org.mockserver.model.*;
 
@@ -110,16 +111,16 @@ public class HttpRequestMatcher extends ObjectWithReflectiveEqualsHashCodeToStri
             boolean cookiesMatch = matches(cookieMatcher, (httpRequest.getCookies() != null ? new ArrayList<KeyAndValue>(httpRequest.getCookies()) : null));
             boolean result = methodMatches && pathMatches && queryStringParametersMatches && bodyMatches && headersMatch && cookiesMatch;
             if (!result && logger.isDebugEnabled()) {
-                logger.debug("\n\nMatcher:" + System.getProperty("line.separator") + System.getProperty("line.separator") +
-                        "[" + this + "]" + System.getProperty("line.separator") + System.getProperty("line.separator") +
-                        "did not match request:" + System.getProperty("line.separator") + System.getProperty("line.separator") +
-                        "[" + httpRequest + "]" + System.getProperty("line.separator") + System.getProperty("line.separator") +
-                        "because:" + System.getProperty("line.separator") + System.getProperty("line.separator") +
-                        "methodMatches = " + methodMatches + "" + System.getProperty("line.separator") +
-                        "pathMatches = " + pathMatches + "" + System.getProperty("line.separator") +
-                        "queryStringParametersMatch = " + queryStringParametersMatches + "" + System.getProperty("line.separator") +
-                        "bodyMatches = " + bodyMatches + "" + System.getProperty("line.separator") +
-                        "headersMatch = " + headersMatch + "" + System.getProperty("line.separator") +
+                logger.debug("\n\nMatcher:" + Line.SEPARATOR + Line.SEPARATOR +
+                        "[" + this + "]" + Line.SEPARATOR + Line.SEPARATOR +
+                        "did not match request:" + Line.SEPARATOR + Line.SEPARATOR +
+                        "[" + httpRequest + "]" + Line.SEPARATOR + Line.SEPARATOR +
+                        "because:" + Line.SEPARATOR + Line.SEPARATOR +
+                        "methodMatches = " + methodMatches + "" + Line.SEPARATOR +
+                        "pathMatches = " + pathMatches + "" + Line.SEPARATOR +
+                        "queryStringParametersMatch = " + queryStringParametersMatches + "" + Line.SEPARATOR +
+                        "bodyMatches = " + bodyMatches + "" + Line.SEPARATOR +
+                        "headersMatch = " + headersMatch + "" + Line.SEPARATOR +
                         "cookiesMatch = " + cookiesMatch);
             }
             return result;

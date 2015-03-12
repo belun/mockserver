@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.ExpectationDTO;
 import org.mockserver.mock.Expectation;
 import org.mockserver.model.*;
@@ -39,15 +40,15 @@ public class ExpectationSerializer {
             HttpResponse httpResponse = expectation.getHttpResponse(false);
             HttpForward httpForward = expectation.getHttpForward();
             HttpCallback httpCallback = expectation.getHttpCallback();
-            output.append(System.getProperty("line.separator") +
-                    "new MockServerClient()" + System.getProperty("line.separator") +
-                    "        .when(" + System.getProperty("line.separator") +
+            output.append(Line.SEPARATOR +
+                    "new MockServerClient()" + Line.SEPARATOR +
+                    "        .when(" + Line.SEPARATOR +
                     "                request()");
             if (StringUtils.isNotEmpty(httpRequest.getMethod())) {
-                output.append(System.getProperty("line.separator") + "                        .withMethod(\"").append(httpRequest.getMethod()).append("\")");
+                output.append(Line.SEPARATOR + "                        .withMethod(\"").append(httpRequest.getMethod()).append("\")");
             }
             if (StringUtils.isNotEmpty(httpRequest.getPath())) {
-                output.append(System.getProperty("line.separator") + "                        .withPath(\"").append(httpRequest.getPath()).append("\")");
+                output.append(Line.SEPARATOR + "                        .withPath(\"").append(httpRequest.getPath()).append("\")");
             }
             if (httpRequest.getHeaders().size() > 0) {
                 serializeAsJavaKeyToMultiValue(output, "Header", new ArrayList<KeyToMultiValue>(httpRequest.getHeaders()));
@@ -60,23 +61,23 @@ public class ExpectationSerializer {
             }
             if (httpRequest.getBody() != null) {
                 if (httpRequest.getBody() instanceof StringBody) {
-                    output.append(System.getProperty("line.separator") + "                        .withBody(new StringBody(\"").append(StringEscapeUtils.escapeJava(((StringBody) httpRequest.getBody()).getValue())).append("\", Body.Type.").append(httpRequest.getBody().getType()).append("))");
+                    output.append(Line.SEPARATOR + "                        .withBody(new StringBody(\"").append(StringEscapeUtils.escapeJava(((StringBody) httpRequest.getBody()).getValue())).append("\", Body.Type.").append(httpRequest.getBody().getType()).append("))");
                 } else if (httpRequest.getBody() instanceof ParameterBody) {
-                    output.append(System.getProperty("line.separator") + "                        .withBody(");
-                    output.append(System.getProperty("line.separator") + "                                new ParameterBody(" + System.getProperty("line.separator"));
+                    output.append(Line.SEPARATOR + "                        .withBody(");
+                    output.append(Line.SEPARATOR + "                                new ParameterBody(" + Line.SEPARATOR);
                     serializeAsJavaKeyToMultiValueList(output, "Parameter", new ArrayList<KeyToMultiValue>(((ParameterBody) httpRequest.getBody()).getValue()), 40);
                     output.append("                                )");
-                    output.append(System.getProperty("line.separator") + "                        )");
+                    output.append(Line.SEPARATOR + "                        )");
                 } else if (httpRequest.getBody() instanceof BinaryBody) {
-                    output.append(System.getProperty("line.separator") + "                        .withBody(new byte[0]) /* note: not possible to generate code for binary data */");
+                    output.append(Line.SEPARATOR + "                        .withBody(new byte[0]) /* note: not possible to generate code for binary data */");
                 }
             }
-            output.append("," + System.getProperty("line.separator") +
-                    "                Times.once()" + System.getProperty("line.separator") +
-                    "        )" + System.getProperty("line.separator"));
+            output.append("," + Line.SEPARATOR +
+                    "                Times.once()" + Line.SEPARATOR +
+                    "        )" + Line.SEPARATOR);
             if (httpResponse != null) {
-                output.append("        .thenRespond(" + System.getProperty("line.separator") +
-                        "                response()" + System.getProperty("line.separator"));
+                output.append("        .thenRespond(" + Line.SEPARATOR +
+                        "                response()" + Line.SEPARATOR);
                 if (httpResponse.getStatusCode() != null) {
                     output.append("                        .withStatusCode(").append(httpResponse.getStatusCode()).append(")");
                 }
@@ -87,29 +88,29 @@ public class ExpectationSerializer {
                     serializeAsJavaKeyAndValue(output, "Cookie", new ArrayList<KeyAndValue>(httpResponse.getCookies()));
                 }
                 if (httpResponse.getBodyAsString() != null && httpResponse.getBodyAsString().length() > 0) {
-                    output.append(System.getProperty("line.separator") + "                        .withBody(\"").append(StringEscapeUtils.escapeJava(httpResponse.getBodyAsString())).append("\")");
+                    output.append(Line.SEPARATOR + "                        .withBody(\"").append(StringEscapeUtils.escapeJava(httpResponse.getBodyAsString())).append("\")");
                 }
-                output.append(System.getProperty("line.separator") + "        );");
+                output.append(Line.SEPARATOR + "        );");
             }
             if (httpForward != null) {
-                output.append("        .thenForward(" + System.getProperty("line.separator") +
-                        "                forward()" + System.getProperty("line.separator"));
+                output.append("        .thenForward(" + Line.SEPARATOR +
+                        "                forward()" + Line.SEPARATOR);
                 if (httpForward.getHost() != null) {
-                    output.append("                        .withHost(\"").append(httpForward.getHost()).append("\")" + System.getProperty("line.separator"));
+                    output.append("                        .withHost(\"").append(httpForward.getHost()).append("\")" + Line.SEPARATOR);
                 }
                 if (httpForward.getPort() != null) {
-                    output.append("                        .withPort(").append(httpForward.getPort()).append(")" + System.getProperty("line.separator"));
+                    output.append("                        .withPort(").append(httpForward.getPort()).append(")" + Line.SEPARATOR);
                 }
                 if (httpForward.getScheme() != null) {
-                    output.append("                        .withScheme(HttpForward.Scheme.").append(httpForward.getScheme()).append(")" + System.getProperty("line.separator"));
+                    output.append("                        .withScheme(HttpForward.Scheme.").append(httpForward.getScheme()).append(")" + Line.SEPARATOR);
                 }
                 output.append("        );");
             }
             if (httpCallback != null) {
-                output.append("        .thenCallback(" + System.getProperty("line.separator") +
-                        "                callback()" + System.getProperty("line.separator"));
+                output.append("        .thenCallback(" + Line.SEPARATOR +
+                        "                callback()" + Line.SEPARATOR);
                 if (httpCallback.getCallbackClass() != null) {
-                    output.append("                        .withCallbackClass(\"").append(httpCallback.getCallbackClass()).append("\")" + System.getProperty("line.separator"));
+                    output.append("                        .withCallbackClass(\"").append(httpCallback.getCallbackClass()).append("\")" + Line.SEPARATOR);
                 }
                 output.append("        );");
             }
@@ -119,7 +120,7 @@ public class ExpectationSerializer {
     }
 
     private void serializeAsJavaKeyToMultiValue(StringBuffer output, String name, List<KeyToMultiValue> keyToMultiValues) {
-        output.append(System.getProperty("line.separator") + "                        .with").append(name).append("s(" + System.getProperty("line.separator"));
+        output.append(Line.SEPARATOR + "                        .with").append(name).append("s(" + Line.SEPARATOR);
         serializeAsJavaKeyToMultiValueList(output, name, keyToMultiValues, 32);
         output.append("                        )");
     }
@@ -136,12 +137,12 @@ public class ExpectationSerializer {
             if (i < (keyToMultiValues.size() - 1)) {
                 output.append(",");
             }
-            output.append(System.getProperty("line.separator"));
+            output.append(Line.SEPARATOR);
         }
     }
 
     private void serializeAsJavaKeyAndValue(StringBuffer output, String name, List<KeyAndValue> keyAndValues) {
-        output.append(System.getProperty("line.separator") + "                        .with").append(name).append("s(" + System.getProperty("line.separator"));
+        output.append(Line.SEPARATOR + "                        .with").append(name).append("s(" + Line.SEPARATOR);
         serializeAsJavaKeyAndValueList(output, name, keyAndValues, 32);
         output.append("                        )");
     }
@@ -156,7 +157,7 @@ public class ExpectationSerializer {
             if (i < (keyAndValues.size() - 1)) {
                 output.append(",");
             }
-            output.append(System.getProperty("line.separator"));
+            output.append(Line.SEPARATOR);
         }
     }
 

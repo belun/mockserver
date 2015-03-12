@@ -1,8 +1,6 @@
 package org.mockserver.codec;
 
 import io.netty.channel.CombinedChannelDuplexHandler;
-import org.mockserver.client.netty.codec.MockServerRequestEncoder;
-import org.mockserver.client.netty.codec.MockServerResponseDecoder;
 
 /**
  * @author jamesdbloom

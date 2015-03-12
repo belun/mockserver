@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PostConstruct;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This configuration contains top level beans and any configuration required by filters (as WebMvcConfiguration only loaded within Dispatcher Servlet)

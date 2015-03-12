@@ -2,6 +2,7 @@ package org.mockserver.cli;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Joiner;
+import org.mockserver.Line;
 import org.mockserver.logging.Logging;
 import org.mockserver.mockserver.MockServerBuilder;
 import org.mockserver.proxy.ProxyBuilder;
@@ -21,16 +22,16 @@ public class Main {
     public static final String PROXY_PORT_KEY = "proxyPort";
     public static final String SERVER_PORT_KEY = "serverPort";
     public static final String USAGE = "" +
-            "   java -jar <path to mockserver-jetty-jar-with-dependencies.jar> [-serverPort <port>] [-proxyPort <port>]" + System.getProperty("line.separator") +
-            "   " + System.getProperty("line.separator") +
-            "     valid options are:" + System.getProperty("line.separator") +
-            "        -serverPort <port>           specifies the HTTP and HTTPS port for the         " + System.getProperty("line.separator") +
-            "                                     MockServer port unification is used to            " + System.getProperty("line.separator") +
-            "                                     support HTTP and HTTPS on the same port           " + System.getProperty("line.separator") +
-            "                                                                                       " + System.getProperty("line.separator") +
-            "        -proxyPort <path>            specifies the HTTP, HTTPS, SOCKS and HTTP         " + System.getProperty("line.separator") +
-            "                                     CONNECT port for proxy, port unification          " + System.getProperty("line.separator") +
-            "                                     supports for all protocols on the same port       " + System.getProperty("line.separator");
+            "   java -jar <path to mockserver-jetty-jar-with-dependencies.jar> [-serverPort <port>] [-proxyPort <port>]" + Line.SEPARATOR +
+            "   " + Line.SEPARATOR +
+            "     valid options are:" + Line.SEPARATOR +
+            "        -serverPort <port>           specifies the HTTP and HTTPS port for the         " + Line.SEPARATOR +
+            "                                     MockServer port unification is used to            " + Line.SEPARATOR +
+            "                                     support HTTP and HTTPS on the same port           " + Line.SEPARATOR +
+            "                                                                                       " + Line.SEPARATOR +
+            "        -proxyPort <path>            specifies the HTTP, HTTPS, SOCKS and HTTP         " + Line.SEPARATOR +
+            "                                     CONNECT port for proxy, port unification          " + Line.SEPARATOR +
+            "                                     supports for all protocols on the same port       " + Line.SEPARATOR;
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
     @VisibleForTesting
@@ -58,8 +59,8 @@ public class Main {
         parseArguments(parseIntegerArguments, arguments);
 
         if (logger.isDebugEnabled()) {
-            logger.debug(System.getProperty("line.separator") + System.getProperty("line.separator") + "Using command line options: " +
-                    Joiner.on(", ").withKeyValueSeparator("=").join(parseIntegerArguments) + System.getProperty("line.separator"));
+            logger.debug(Line.SEPARATOR + Line.SEPARATOR + "Using command line options: " +
+                    Joiner.on(", ").withKeyValueSeparator("=").join(parseIntegerArguments) + Line.SEPARATOR);
         }
         Logging.overrideLogLevel(System.getProperty("mockserver.logLevel"));
 

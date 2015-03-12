@@ -1,7 +1,7 @@
 package org.mockserver.proxy;
 
-import org.mockserver.proxy.reverse.ReverseProxy;
 import org.mockserver.proxy.forward.ForwardProxy;
+import org.mockserver.proxy.reverse.ReverseProxy;
 
 /**
  * This class should be used to configure the Proxy, using this class is the simplest way to create an Proxy instance

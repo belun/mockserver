@@ -1,5 +1,6 @@
 package org.mockserver.mock;
 
+import org.mockserver.Line;
 import org.mockserver.matchers.HttpRequestMatcher;
 import org.mockserver.matchers.MatcherBuilder;
 import org.mockserver.matchers.Times;
@@ -102,7 +103,7 @@ public class Expectation extends ObjectWithReflectiveEqualsHashCodeToString {
     }
 
     public boolean matches(HttpRequest httpRequest) {
-        logger.trace("\nMatching expectation: \n{} \nwith incoming http: \n{}" + System.getProperty("line.separator"), this.httpRequest, httpRequest);
+        logger.trace("\nMatching expectation: \n{} \nwith incoming http: \n{}" + Line.SEPARATOR, this.httpRequest, httpRequest);
         return hasRemainingMatches() && httpRequestMatcher.matches(httpRequest);
     }
 

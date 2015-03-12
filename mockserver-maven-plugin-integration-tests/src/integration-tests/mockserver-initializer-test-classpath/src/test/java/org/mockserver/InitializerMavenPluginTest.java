@@ -2,7 +2,10 @@ package org.mockserver;
 
 import org.junit.Test;
 import org.mockserver.client.netty.NettyHttpClient;
-import org.mockserver.model.*;
+import org.mockserver.model.Header;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
+import org.mockserver.model.HttpStatusCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

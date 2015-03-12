@@ -1,6 +1,5 @@
 package org.mockserver.filters;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.mockserver.client.serialization.ExpectationSerializer;
 import org.mockserver.client.serialization.HttpRequestSerializer;
 import org.mockserver.collections.CircularLinkedList;

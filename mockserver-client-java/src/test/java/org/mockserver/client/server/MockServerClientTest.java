@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockserver.Line;
 import org.mockserver.client.netty.NettyHttpClient;
 import org.mockserver.client.serialization.ExpectationSerializer;
 import org.mockserver.client.serialization.VerificationSequenceSerializer;
@@ -317,9 +318,9 @@ public class MockServerClientTest {
 
         // then
         verify(mockHttpClient).sendRequest(outboundRequest("localhost", 8080, "", request().withMethod("PUT").withPath("/clear").withBody("" +
-                "{" + System.getProperty("line.separator") +
-                "  \"path\" : \"/some_path\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_request_body\"" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "  \"path\" : \"/some_path\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_request_body\"" + Line.SEPARATOR +
                 "}")));
     }
 
@@ -350,9 +351,9 @@ public class MockServerClientTest {
 
         // then
         verify(mockHttpClient).sendRequest(outboundRequest("localhost", 8080, "", request().withMethod("PUT").withPath("/retrieve").withBody("" +
-                "{" + System.getProperty("line.separator") +
-                "  \"path\" : \"/some_path\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_request_body\"" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "  \"path\" : \"/some_path\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_request_body\"" + Line.SEPARATOR +
                 "}")));
         verify(mockExpectationSerializer).deserializeArray("body");
     }
@@ -388,9 +389,9 @@ public class MockServerClientTest {
 
         // then
         verify(mockHttpClient).sendRequest(outboundRequest("localhost", 8080, "", request().withMethod("PUT").withPath("/retrieve").withBody("" +
-                "{" + System.getProperty("line.separator") +
-                "  \"path\" : \"/some_path\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_request_body\"" + System.getProperty("line.separator") +
+                "{" + Line.SEPARATOR +
+                "  \"path\" : \"/some_path\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_request_body\"" + Line.SEPARATOR +
                 "}")));
     }
 

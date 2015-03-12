@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.*;
 import org.mockserver.model.*;
 
@@ -80,8 +81,8 @@ public class HttpRequestSerializerTest {
     @Test
     public void deserializeHttpRequestAsField() throws IOException {
         // given
-        String input = "{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": \"requestBytes\"," + System.getProperty("line.separator") +
+        String input = "{" + Line.SEPARATOR +
+                "    \"httpRequest\": \"requestBytes\"," + Line.SEPARATOR +
                 "}";
         when(objectMapper.readValue(eq(input), same(ExpectationDTO.class))).thenReturn(new ExpectationDTO().setHttpRequest(fullHttpRequestDTO));
 

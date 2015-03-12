@@ -1,6 +1,5 @@
 package org.mockserver.matchers;
 
-import io.netty.handler.codec.http.QueryStringDecoder;
 import org.mockserver.model.HttpRequest;
 
 /**

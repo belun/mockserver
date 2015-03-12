@@ -3,7 +3,6 @@ package org.mockserver.mock.action;
 import org.mockserver.model.HttpCallback;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
-import org.mockserver.filters.Filters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

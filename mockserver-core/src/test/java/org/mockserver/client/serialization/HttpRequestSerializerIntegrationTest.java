@@ -1,6 +1,7 @@
 package org.mockserver.client.serialization;
 
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.*;
 import org.mockserver.model.*;
 
@@ -20,9 +21,9 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldIgnoreExtraFields() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "    \"path\": \"somePath\"," + System.getProperty("line.separator") +
-                "    \"extra_field\": \"extra_value\"" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "    \"path\": \"somePath\"," + Line.SEPARATOR +
+                "    \"extra_field\": \"extra_value\"" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -37,25 +38,25 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeCompleteObject() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"method\" : \"someMethod\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"somePath\"," + System.getProperty("line.separator") +
-                "  \"queryStringParameters\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"queryParameterName\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"queryParameterValue\" ]" + System.getProperty("line.separator") +
-                "  } ]," + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"somebody\"" + System.getProperty("line.separator") +
-                "  }," + System.getProperty("line.separator") +
-                "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"someCookieName\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"someCookieValue\"" + System.getProperty("line.separator") +
-                "  } ]," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"someHeaderName\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"someHeaderValue\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"method\" : \"someMethod\"," + Line.SEPARATOR +
+                "  \"path\" : \"somePath\"," + Line.SEPARATOR +
+                "  \"queryStringParameters\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"queryParameterName\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"queryParameterValue\" ]" + Line.SEPARATOR +
+                "  } ]," + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "    \"value\" : \"somebody\"" + Line.SEPARATOR +
+                "  }," + Line.SEPARATOR +
+                "  \"cookies\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"someCookieName\"," + Line.SEPARATOR +
+                "    \"value\" : \"someCookieValue\"" + Line.SEPARATOR +
+                "  } ]," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"someHeaderName\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"someHeaderValue\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -75,8 +76,8 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeStringBodyShorthand() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : \"somebody\"" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : \"somebody\"" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -91,11 +92,11 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeStringBodyWithType() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"somebody\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "    \"value\" : \"somebody\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -110,11 +111,11 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeJsonBody() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"JSON\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"{ \\\"key\\\": \\\"value\\\" }\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"JSON\"," + Line.SEPARATOR +
+                "    \"value\" : \"{ \\\"key\\\": \\\"value\\\" }\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -129,11 +130,11 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeRegexBody() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"REGEX\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"some[a-z]{3}\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"REGEX\"," + Line.SEPARATOR +
+                "    \"value\" : \"some[a-z]{3}\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -148,11 +149,11 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeXpathBody() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"XPATH\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"/element[key = 'some_key' and value = 'some_value']\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"XPATH\"," + Line.SEPARATOR +
+                "    \"value\" : \"/element[key = 'some_key' and value = 'some_value']\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -167,17 +168,17 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeParameterBody() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "    \"parameters\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"nameOne\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"valueOne\" ]" + System.getProperty("line.separator") +
-                "    }, {" + System.getProperty("line.separator") +
-                "      \"name\" : \"nameTwo\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"valueTwo_One\", \"valueTwo_Two\" ]" + System.getProperty("line.separator") +
-                "    } ]" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "    \"parameters\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"nameOne\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"valueOne\" ]" + Line.SEPARATOR +
+                "    }, {" + Line.SEPARATOR +
+                "      \"name\" : \"nameTwo\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"valueTwo_One\", \"valueTwo_Two\" ]" + Line.SEPARATOR +
+                "    } ]" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -195,8 +196,8 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializePartialObject() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "    \"path\": \"somePath\"" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "    \"path\": \"somePath\"" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -211,14 +212,14 @@ public class HttpRequestSerializerIntegrationTest {
     @Test
     public void shouldDeserializeAsHttpRequestField() throws IOException {
         // given
-        String requestBytes = "{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"path\": \"somePath\"," + System.getProperty("line.separator") +
-                "        \"queryStringParameters\" : [ {" + System.getProperty("line.separator") +
-                "            \"name\" : \"queryParameterName\"," + System.getProperty("line.separator") +
-                "            \"values\" : [ \"queryParameterValue\" ]" + System.getProperty("line.separator") +
-                "        } ]" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String requestBytes = "{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"path\": \"somePath\"," + Line.SEPARATOR +
+                "        \"queryStringParameters\" : [ {" + Line.SEPARATOR +
+                "            \"name\" : \"queryParameterName\"," + Line.SEPARATOR +
+                "            \"values\" : [ \"queryParameterValue\" ]" + Line.SEPARATOR +
+                "        } ]" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}";
 
         // when
@@ -246,22 +247,22 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"method\" : \"someMethod\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"somePath\"," + System.getProperty("line.separator") +
-                "  \"queryStringParameters\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"queryParameterName\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"queryParameterValue\" ]" + System.getProperty("line.separator") +
-                "  } ]," + System.getProperty("line.separator") +
-                "  \"body\" : \"somebody\"," + System.getProperty("line.separator") +
-                "  \"cookies\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"someCookieName\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"someCookieValue\"" + System.getProperty("line.separator") +
-                "  } ]," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"someHeaderName\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"someHeaderValue\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"method\" : \"someMethod\"," + Line.SEPARATOR +
+                "  \"path\" : \"somePath\"," + Line.SEPARATOR +
+                "  \"queryStringParameters\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"queryParameterName\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"queryParameterValue\" ]" + Line.SEPARATOR +
+                "  } ]," + Line.SEPARATOR +
+                "  \"body\" : \"somebody\"," + Line.SEPARATOR +
+                "  \"cookies\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"someCookieName\"," + Line.SEPARATOR +
+                "    \"value\" : \"someCookieValue\"" + Line.SEPARATOR +
+                "  } ]," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"someHeaderName\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"someHeaderValue\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -286,22 +287,22 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("[ {" + System.getProperty("line.separator") +
-                "  \"method\" : \"some_method_one\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_body_one\"," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"some_header_name_one\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"some_header_value_one\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
-                "}, {" + System.getProperty("line.separator") +
-                "  \"method\" : \"some_method_two\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"some_path_two\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_body_two\"," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"some_header_name_two\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"some_header_value_two\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        assertEquals("[ {" + Line.SEPARATOR +
+                "  \"method\" : \"some_method_one\"," + Line.SEPARATOR +
+                "  \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_body_one\"," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"some_header_name_one\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"some_header_value_one\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
+                "}, {" + Line.SEPARATOR +
+                "  \"method\" : \"some_method_two\"," + Line.SEPARATOR +
+                "  \"path\" : \"some_path_two\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_body_two\"," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"some_header_name_two\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"some_header_value_two\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "} ]", jsonExpectation);
     }
 
@@ -326,22 +327,22 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("[ {" + System.getProperty("line.separator") +
-                "  \"method\" : \"some_method_one\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"some_path_one\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_body_one\"," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"some_header_name_one\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"some_header_value_one\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
-                "}, {" + System.getProperty("line.separator") +
-                "  \"method\" : \"some_method_two\"," + System.getProperty("line.separator") +
-                "  \"path\" : \"some_path_two\"," + System.getProperty("line.separator") +
-                "  \"body\" : \"some_body_two\"," + System.getProperty("line.separator") +
-                "  \"headers\" : [ {" + System.getProperty("line.separator") +
-                "    \"name\" : \"some_header_name_two\"," + System.getProperty("line.separator") +
-                "    \"values\" : [ \"some_header_value_two\" ]" + System.getProperty("line.separator") +
-                "  } ]" + System.getProperty("line.separator") +
+        assertEquals("[ {" + Line.SEPARATOR +
+                "  \"method\" : \"some_method_one\"," + Line.SEPARATOR +
+                "  \"path\" : \"some_path_one\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_body_one\"," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"some_header_name_one\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"some_header_value_one\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
+                "}, {" + Line.SEPARATOR +
+                "  \"method\" : \"some_method_two\"," + Line.SEPARATOR +
+                "  \"path\" : \"some_path_two\"," + Line.SEPARATOR +
+                "  \"body\" : \"some_body_two\"," + Line.SEPARATOR +
+                "  \"headers\" : [ {" + Line.SEPARATOR +
+                "    \"name\" : \"some_header_name_two\"," + Line.SEPARATOR +
+                "    \"values\" : [ \"some_header_value_two\" ]" + Line.SEPARATOR +
+                "  } ]" + Line.SEPARATOR +
                 "} ]", jsonExpectation);
     }
 
@@ -355,8 +356,8 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"body\" : \"somebody\"" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"body\" : \"somebody\"" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -370,11 +371,11 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"JSON\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"{ \\\"key\\\": \\\"value\\\" }\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"JSON\"," + Line.SEPARATOR +
+                "    \"value\" : \"{ \\\"key\\\": \\\"value\\\" }\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -388,11 +389,11 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"REGEX\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"some[a-z]{3}\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"REGEX\"," + Line.SEPARATOR +
+                "    \"value\" : \"some[a-z]{3}\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -406,11 +407,11 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"XPATH\"," + System.getProperty("line.separator") +
-                "    \"value\" : \"/element[key = 'some_key' and value = 'some_value']\"" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"XPATH\"," + Line.SEPARATOR +
+                "    \"value\" : \"/element[key = 'some_key' and value = 'some_value']\"" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -427,17 +428,17 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"body\" : {" + System.getProperty("line.separator") +
-                "    \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "    \"parameters\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"nameOne\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"valueOne\" ]" + System.getProperty("line.separator") +
-                "    }, {" + System.getProperty("line.separator") +
-                "      \"name\" : \"nameTwo\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"valueTwo_One\", \"valueTwo_Two\" ]" + System.getProperty("line.separator") +
-                "    } ]" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"body\" : {" + Line.SEPARATOR +
+                "    \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "    \"parameters\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"nameOne\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"valueOne\" ]" + Line.SEPARATOR +
+                "    }, {" + Line.SEPARATOR +
+                "      \"name\" : \"nameTwo\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"valueTwo_One\", \"valueTwo_Two\" ]" + Line.SEPARATOR +
+                "    } ]" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -450,8 +451,8 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"path\" : \"somePath\"" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"path\" : \"somePath\"" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 
@@ -464,8 +465,8 @@ public class HttpRequestSerializerIntegrationTest {
         );
 
         // then
-        assertEquals("{" + System.getProperty("line.separator") +
-                "  \"path\" : \"somePath\"" + System.getProperty("line.separator") +
+        assertEquals("{" + Line.SEPARATOR +
+                "  \"path\" : \"somePath\"" + Line.SEPARATOR +
                 "}", jsonExpectation);
     }
 }

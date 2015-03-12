@@ -1,6 +1,5 @@
 package org.mockserver.proxy;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -11,13 +10,16 @@ import org.mockserver.client.serialization.ExpectationSerializer;
 import org.mockserver.client.serialization.HttpRequestSerializer;
 import org.mockserver.client.serialization.VerificationSequenceSerializer;
 import org.mockserver.client.serialization.VerificationSerializer;
+import org.mockserver.filters.LogFilter;
 import org.mockserver.filters.RequestFilter;
 import org.mockserver.filters.ResponseFilter;
 import org.mockserver.mappers.HttpServletToMockServerRequestMapper;
 import org.mockserver.mappers.MockServerToHttpServletResponseMapper;
 import org.mockserver.mock.Expectation;
-import org.mockserver.model.*;
-import org.mockserver.filters.LogFilter;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
+import org.mockserver.model.HttpStatusCode;
+import org.mockserver.model.OutboundHttpRequest;
 import org.mockserver.verify.Verification;
 import org.mockserver.verify.VerificationSequence;
 import org.mockserver.verify.VerificationTimes;

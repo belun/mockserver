@@ -1,11 +1,13 @@
 package org.mockserver.mock.action;
 
 import org.mockserver.client.netty.NettyHttpClient;
-import org.mockserver.model.*;
+import org.mockserver.model.HttpForward;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
+import org.mockserver.model.OutboundHttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.mockserver.model.Header.header;
 import static org.mockserver.model.OutboundHttpRequest.outboundRequest;
 
 /**

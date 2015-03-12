@@ -1,10 +1,7 @@
 package org.mockserver.client.serialization.model;
 
 import org.mockserver.model.KeyAndValue;
-import org.mockserver.model.KeyToMultiValue;
 import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
-
-import java.util.List;
 
 /**
  * @author jamesdbloom

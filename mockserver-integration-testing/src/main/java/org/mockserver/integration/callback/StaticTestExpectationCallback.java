@@ -4,7 +4,6 @@ import org.mockserver.mock.action.ExpectationCallback;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 

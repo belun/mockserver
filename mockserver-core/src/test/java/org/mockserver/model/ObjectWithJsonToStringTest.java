@@ -1,6 +1,7 @@
 package org.mockserver.model;
 
 import org.junit.Test;
+import org.mockserver.Line;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -30,9 +31,9 @@ public class ObjectWithJsonToStringTest {
 
     @Test
     public void shouldConvertObjectToJSON() {
-        assertThat(new TestObject().toString(), is("{" + System.getProperty("line.separator") +
-                "  \"stringField\" : \"stringField\"," + System.getProperty("line.separator") +
-                "  \"intField\" : 100" + System.getProperty("line.separator") +
+        assertThat(new TestObject().toString(), is("{" + Line.SEPARATOR +
+                "  \"stringField\" : \"stringField\"," + Line.SEPARATOR +
+                "  \"intField\" : 100" + Line.SEPARATOR +
                 "}"));
     }
 

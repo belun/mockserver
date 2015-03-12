@@ -3,9 +3,9 @@ package org.mockserver.client.serialization.model;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.mockserver.model.Cookie;
-import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 import org.mockserver.model.Header;
 import org.mockserver.model.HttpResponse;
+import org.mockserver.model.ObjectWithReflectiveEqualsHashCodeToString;
 
 import java.util.ArrayList;
 import java.util.List;

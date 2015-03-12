@@ -3,8 +3,8 @@ package org.mockserver.proxy;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockserver.proxy.reverse.ReverseProxy;
 import org.mockserver.proxy.forward.ForwardProxy;
+import org.mockserver.proxy.reverse.ReverseProxy;
 import org.mockserver.socket.PortFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;

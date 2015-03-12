@@ -1,6 +1,7 @@
 package org.mockserver.client.serialization;
 
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.serialization.model.*;
 import org.mockserver.matchers.Times;
 import org.mockserver.model.*;
@@ -21,50 +22,50 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldDeserializeCompleteObject() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "  \"httpRequest\" : {" + System.getProperty("line.separator") +
-                "    \"method\" : \"someMethod\"," + System.getProperty("line.separator") +
-                "    \"path\" : \"somePath\"," + System.getProperty("line.separator") +
-                "    \"queryStringParameters\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"queryStringParameterNameOne\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"queryStringParameterValueOne_One\", \"queryStringParameterValueOne_Two\" ]" + System.getProperty("line.separator") +
-                "    }, {" + System.getProperty("line.separator") +
-                "      \"name\" : \"queryStringParameterNameTwo\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"queryStringParameterValueTwo_One\" ]" + System.getProperty("line.separator") +
-                "    } ]," + System.getProperty("line.separator") +
-                "    \"body\" : {" + System.getProperty("line.separator") +
-                "      \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "      \"value\" : \"someBody\"" + System.getProperty("line.separator") +
-                "    }," + System.getProperty("line.separator") +
-                "    \"cookies\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"someCookieName\"," + System.getProperty("line.separator") +
-                "      \"value\" : \"someCookieValue\"" + System.getProperty("line.separator") +
-                "    } ]," + System.getProperty("line.separator") +
-                "    \"headers\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"someHeaderName\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"someHeaderValue\" ]" + System.getProperty("line.separator") +
-                "    } ]" + System.getProperty("line.separator") +
-                "  }," + System.getProperty("line.separator") +
-                "  \"httpResponse\" : {" + System.getProperty("line.separator") +
-                "    \"statusCode\" : 304," + System.getProperty("line.separator") +
-                "    \"body\" : \"someBody\"," + System.getProperty("line.separator") +
-                "    \"cookies\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"someCookieName\"," + System.getProperty("line.separator") +
-                "      \"value\" : \"someCookieValue\"" + System.getProperty("line.separator") +
-                "    } ]," + System.getProperty("line.separator") +
-                "    \"headers\" : [ {" + System.getProperty("line.separator") +
-                "      \"name\" : \"someHeaderName\"," + System.getProperty("line.separator") +
-                "      \"values\" : [ \"someHeaderValue\" ]" + System.getProperty("line.separator") +
-                "    } ]," + System.getProperty("line.separator") +
-                "    \"delay\" : {" + System.getProperty("line.separator") +
-                "      \"timeUnit\" : \"MICROSECONDS\"," + System.getProperty("line.separator") +
-                "      \"value\" : 1" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
-                "  }," + System.getProperty("line.separator") +
-                "  \"times\" : {" + System.getProperty("line.separator") +
-                "    \"remainingTimes\" : 5," + System.getProperty("line.separator") +
-                "    \"unlimited\" : false" + System.getProperty("line.separator") +
-                "  }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "  \"httpRequest\" : {" + Line.SEPARATOR +
+                "    \"method\" : \"someMethod\"," + Line.SEPARATOR +
+                "    \"path\" : \"somePath\"," + Line.SEPARATOR +
+                "    \"queryStringParameters\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"queryStringParameterNameOne\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"queryStringParameterValueOne_One\", \"queryStringParameterValueOne_Two\" ]" + Line.SEPARATOR +
+                "    }, {" + Line.SEPARATOR +
+                "      \"name\" : \"queryStringParameterNameTwo\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"queryStringParameterValueTwo_One\" ]" + Line.SEPARATOR +
+                "    } ]," + Line.SEPARATOR +
+                "    \"body\" : {" + Line.SEPARATOR +
+                "      \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "      \"value\" : \"someBody\"" + Line.SEPARATOR +
+                "    }," + Line.SEPARATOR +
+                "    \"cookies\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"someCookieName\"," + Line.SEPARATOR +
+                "      \"value\" : \"someCookieValue\"" + Line.SEPARATOR +
+                "    } ]," + Line.SEPARATOR +
+                "    \"headers\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"someHeaderName\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"someHeaderValue\" ]" + Line.SEPARATOR +
+                "    } ]" + Line.SEPARATOR +
+                "  }," + Line.SEPARATOR +
+                "  \"httpResponse\" : {" + Line.SEPARATOR +
+                "    \"statusCode\" : 304," + Line.SEPARATOR +
+                "    \"body\" : \"someBody\"," + Line.SEPARATOR +
+                "    \"cookies\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"someCookieName\"," + Line.SEPARATOR +
+                "      \"value\" : \"someCookieValue\"" + Line.SEPARATOR +
+                "    } ]," + Line.SEPARATOR +
+                "    \"headers\" : [ {" + Line.SEPARATOR +
+                "      \"name\" : \"someHeaderName\"," + Line.SEPARATOR +
+                "      \"values\" : [ \"someHeaderValue\" ]" + Line.SEPARATOR +
+                "    } ]," + Line.SEPARATOR +
+                "    \"delay\" : {" + Line.SEPARATOR +
+                "      \"timeUnit\" : \"MICROSECONDS\"," + Line.SEPARATOR +
+                "      \"value\" : 1" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
+                "  }," + Line.SEPARATOR +
+                "  \"times\" : {" + Line.SEPARATOR +
+                "    \"remainingTimes\" : 5," + Line.SEPARATOR +
+                "    \"unlimited\" : false" + Line.SEPARATOR +
+                "  }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -102,19 +103,19 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithParametersBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "            \"parameters\" : [ {" + System.getProperty("line.separator") +
-                "                    \"name\" : \"parameterOneName\"," + System.getProperty("line.separator") +
-                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + System.getProperty("line.separator") +
-                "                }, {" + System.getProperty("line.separator") +
-                "                    \"name\" : \"parameterTwoName\"," + System.getProperty("line.separator") +
-                "                    \"values\" : [ \"parameterTwoValue\" ]" + System.getProperty("line.separator") +
-                "            } ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "            \"parameters\" : [ {" + Line.SEPARATOR +
+                "                    \"name\" : \"parameterOneName\"," + Line.SEPARATOR +
+                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + Line.SEPARATOR +
+                "                }, {" + Line.SEPARATOR +
+                "                    \"name\" : \"parameterTwoName\"," + Line.SEPARATOR +
+                "                    \"values\" : [ \"parameterTwoValue\" ]" + Line.SEPARATOR +
+                "            } ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -134,11 +135,11 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithInvalidBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -154,12 +155,12 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithMissingTypeFromBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"value\" : \"some_value\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"value\" : \"some_value\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -175,12 +176,12 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithMissingValueFromBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"STRING\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"STRING\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -196,13 +197,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithWrongFieldInBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "            \"wrong_name\" : \"some_value\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "            \"wrong_name\" : \"some_value\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -218,13 +219,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithWrongValueFieldTypeInStringBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "            \"value\" : 1" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "            \"value\" : 1" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -240,13 +241,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithWrongValueFieldTypeInBinaryBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"BINARY\"," + System.getProperty("line.separator") +
-                "            \"value\" : 1" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"BINARY\"," + Line.SEPARATOR +
+                "            \"value\" : 1" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -262,13 +263,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithWrongValueFieldTypeInParameterBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "            \"value\" : 1" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "            \"value\" : 1" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -284,13 +285,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithWrongTypeFieldTypeInBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : 1," + System.getProperty("line.separator") +
-                "            \"value\" : \"some_value\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : 1," + Line.SEPARATOR +
+                "            \"value\" : \"some_value\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -306,13 +307,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithExactStringBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"STRING\"," + System.getProperty("line.separator") +
-                "            \"value\" : \"some_value\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"STRING\"," + Line.SEPARATOR +
+                "            \"value\" : \"some_value\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -329,13 +330,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithRegexStringBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"REGEX\"," + System.getProperty("line.separator") +
-                "            \"value\" : \"some[a-zA-Z]*\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"REGEX\"," + Line.SEPARATOR +
+                "            \"value\" : \"some[a-zA-Z]*\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -352,13 +353,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithJsonStringBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"JSON\"," + System.getProperty("line.separator") +
-                "            \"value\" : \"{'employees':[{'firstName':'John', 'lastName':'Doe'}]}\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"JSON\"," + Line.SEPARATOR +
+                "            \"value\" : \"{'employees':[{'firstName':'John', 'lastName':'Doe'}]}\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -376,13 +377,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithXPathStringBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"XPATH\"," + System.getProperty("line.separator") +
-                "            \"value\" : \"\\\\some\\\\xpath\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"XPATH\"," + Line.SEPARATOR +
+                "            \"value\" : \"\\\\some\\\\xpath\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -399,13 +400,13 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithBinaryBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"BINARY\"," + System.getProperty("line.separator") +
-                "            \"value\" : \"" + DatatypeConverter.printBase64Binary("some_value".getBytes()) + "\"" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"BINARY\"," + Line.SEPARATOR +
+                "            \"value\" : \"" + DatatypeConverter.printBase64Binary("some_value".getBytes()) + "\"" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -422,19 +423,19 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithParameterBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "            \"parameters\" : [ {" + System.getProperty("line.separator") +
-                "                    \"name\" : \"parameterOneName\"," + System.getProperty("line.separator") +
-                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + System.getProperty("line.separator") +
-                "                }, {" + System.getProperty("line.separator") +
-                "                    \"name\" : \"parameterTwoName\"," + System.getProperty("line.separator") +
-                "                    \"values\" : [ \"parameterTwoValue\" ]" + System.getProperty("line.separator") +
-                "            } ]" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "            \"parameters\" : [ {" + Line.SEPARATOR +
+                "                    \"name\" : \"parameterOneName\"," + Line.SEPARATOR +
+                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + Line.SEPARATOR +
+                "                }, {" + Line.SEPARATOR +
+                "                    \"name\" : \"parameterTwoName\"," + Line.SEPARATOR +
+                "                    \"values\" : [ \"parameterTwoValue\" ]" + Line.SEPARATOR +
+                "            } ]" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when
@@ -454,16 +455,16 @@ public class ObjectMapperFactoryTest {
     @Test
     public void shouldParseJSONWithInvalidArrayParameterBody() throws IOException {
         // given
-        String json = ("{" + System.getProperty("line.separator") +
-                "    \"httpRequest\": {" + System.getProperty("line.separator") +
-                "        \"body\" : {" + System.getProperty("line.separator") +
-                "            \"type\" : \"PARAMETERS\"," + System.getProperty("line.separator") +
-                "            \"parameters\" : {" + System.getProperty("line.separator") +
-                "                    \"name\" : \"parameterOneName\"," + System.getProperty("line.separator") +
-                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + System.getProperty("line.separator") +
-                "                }" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        String json = ("{" + Line.SEPARATOR +
+                "    \"httpRequest\": {" + Line.SEPARATOR +
+                "        \"body\" : {" + Line.SEPARATOR +
+                "            \"type\" : \"PARAMETERS\"," + Line.SEPARATOR +
+                "            \"parameters\" : {" + Line.SEPARATOR +
+                "                    \"name\" : \"parameterOneName\"," + Line.SEPARATOR +
+                "                    \"values\" : [ \"parameterOneValueOne\", \"parameterOneValueTwo\" ]" + Line.SEPARATOR +
+                "                }" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}");
 
         // when

@@ -10,7 +10,6 @@ import org.mockserver.client.proxy.ProxyClient;
 import org.mockserver.integration.ClientAndProxy;
 import org.mockserver.socket.PortFactory;
 
-import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

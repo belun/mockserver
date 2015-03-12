@@ -5,6 +5,7 @@ import com.google.common.net.MediaType;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockserver.Line;
 import org.mockserver.client.netty.NettyHttpClient;
 import org.mockserver.client.netty.SocketConnectionException;
 import org.mockserver.client.server.MockServerClient;
@@ -585,11 +586,11 @@ public abstract class AbstractClientServerIntegrationTest {
                     .withPath(calculatePath("some_path")), VerificationTimes.atLeast(2));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found at least 2 times, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path") + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<{" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found at least 2 times, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path") + "\"" + Line.SEPARATOR +
+                    "}> but was:<{" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -613,11 +614,11 @@ public abstract class AbstractClientServerIntegrationTest {
                     .withPath(calculatePath("some_path")), VerificationTimes.exactly(0));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found exactly 0 times, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path") + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<{" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found exactly 0 times, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path") + "\"" + Line.SEPARATOR +
+                    "}> but was:<{" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -641,11 +642,11 @@ public abstract class AbstractClientServerIntegrationTest {
                     .withPath(calculatePath("some_other_path")), VerificationTimes.exactly(2));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request not found exactly 2 times, expected:<{" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_other_path") + "\"" + System.getProperty("line.separator") +
-                    "}> but was:<{" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request not found exactly 2 times, expected:<{" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_other_path") + "\"" + Line.SEPARATOR +
+                    "}> but was:<{" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path") + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -790,35 +791,35 @@ public abstract class AbstractClientServerIntegrationTest {
             mockServerClient.verify(request(calculatePath("some_path_two")), request(calculatePath("some_path_one")));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_two") + "\"" + System.getProperty("line.separator") +
-                    "}, {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"" + System.getProperty("line.separator") +
-                    "} ]> but was:<[ {" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_two") + "\"" + Line.SEPARATOR +
+                    "}, {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"" + Line.SEPARATOR +
+                    "} ]> but was:<[ {" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + Line.SEPARATOR));
         }
         try {
             mockServerClient.verify(request(calculatePath("some_path_three")), request(calculatePath("some_path_two")));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_three") + "\"" + System.getProperty("line.separator") +
-                    "}, {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_two") + "\"" + System.getProperty("line.separator") +
-                    "} ]> but was:<[ {" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_three") + "\"" + Line.SEPARATOR +
+                    "}, {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_two") + "\"" + Line.SEPARATOR +
+                    "} ]> but was:<[ {" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + Line.SEPARATOR));
         }
         try {
             mockServerClient.verify(request(calculatePath("some_path_four")));
             fail();
         } catch (AssertionError ae) {
-            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_four") + "\"" + System.getProperty("line.separator") +
-                    "} ]> but was:<[ {" + System.getProperty("line.separator") +
-                    "  \"method\" : \"GET\"," + System.getProperty("line.separator") +
-                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + System.getProperty("line.separator")));
+            assertThat(ae.getMessage(), startsWith("Request sequence not found, expected:<[ {" + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_four") + "\"" + Line.SEPARATOR +
+                    "} ]> but was:<[ {" + Line.SEPARATOR +
+                    "  \"method\" : \"GET\"," + Line.SEPARATOR +
+                    "  \"path\" : \"" + calculatePath("some_path_one") + "\"," + Line.SEPARATOR));
         }
     }
 
@@ -837,31 +838,31 @@ public abstract class AbstractClientServerIntegrationTest {
                         request()
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<bookstore>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"COOKING\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Everyday Italian</title>" + System.getProperty("line.separator") +
-                                        "  <author>Giada De Laurentiis</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>30.00</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"CHILDREN\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Harry Potter</title>" + System.getProperty("line.separator") +
-                                        "  <author>J K. Rowling</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>29.99</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"WEB\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Learning XML</title>" + System.getProperty("line.separator") +
-                                        "  <author>Erik T. Ray</author>" + System.getProperty("line.separator") +
-                                        "  <year>2003</year>" + System.getProperty("line.separator") +
-                                        "  <price>39.95</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
+                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<bookstore>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"COOKING\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Everyday Italian</title>" + Line.SEPARATOR +
+                                        "  <author>Giada De Laurentiis</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>30.00</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"CHILDREN\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Harry Potter</title>" + Line.SEPARATOR +
+                                        "  <author>J K. Rowling</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>29.99</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"WEB\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Learning XML</title>" + Line.SEPARATOR +
+                                        "  <author>Erik T. Ray</author>" + Line.SEPARATOR +
+                                        "  <year>2003</year>" + Line.SEPARATOR +
+                                        "  <price>39.95</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
                                         "</bookstore>", Body.Type.STRING)),
                         headersToIgnore)
         );
@@ -875,31 +876,31 @@ public abstract class AbstractClientServerIntegrationTest {
                                 .setSecure(true)
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<bookstore>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"COOKING\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Everyday Italian</title>" + System.getProperty("line.separator") +
-                                        "  <author>Giada De Laurentiis</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>30.00</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"CHILDREN\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Harry Potter</title>" + System.getProperty("line.separator") +
-                                        "  <author>J K. Rowling</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>29.99</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"WEB\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Learning XML</title>" + System.getProperty("line.separator") +
-                                        "  <author>Erik T. Ray</author>" + System.getProperty("line.separator") +
-                                        "  <year>2003</year>" + System.getProperty("line.separator") +
-                                        "  <price>39.95</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
+                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<bookstore>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"COOKING\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Everyday Italian</title>" + Line.SEPARATOR +
+                                        "  <author>Giada De Laurentiis</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>30.00</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"CHILDREN\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Harry Potter</title>" + Line.SEPARATOR +
+                                        "  <author>J K. Rowling</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>29.99</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"WEB\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Learning XML</title>" + Line.SEPARATOR +
+                                        "  <author>Erik T. Ray</author>" + Line.SEPARATOR +
+                                        "  <year>2003</year>" + Line.SEPARATOR +
+                                        "  <price>39.95</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
                                         "</bookstore>", Body.Type.STRING)),
                         headersToIgnore)
         );
@@ -908,27 +909,27 @@ public abstract class AbstractClientServerIntegrationTest {
     @Test
     public void clientCanCallServerMatchBodyWithJson() {
         // when
-        mockServerClient.when(request().withBody(json("{" + System.getProperty("line.separator") +
-                "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                "        \"title\": \"S\", " + System.getProperty("line.separator") +
-                "        \"GlossList\": {" + System.getProperty("line.separator") +
-                "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                "                        \"GML\", " + System.getProperty("line.separator") +
-                "                        \"XML\"" + System.getProperty("line.separator") +
-                "                    ]" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                "            }" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        mockServerClient.when(request().withBody(json("{" + Line.SEPARATOR +
+                "    \"GlossDiv\": {" + Line.SEPARATOR +
+                "        \"title\": \"S\", " + Line.SEPARATOR +
+                "        \"GlossList\": {" + Line.SEPARATOR +
+                "            \"GlossEntry\": {" + Line.SEPARATOR +
+                "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                "                \"GlossDef\": {" + Line.SEPARATOR +
+                "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                "                        \"GML\", " + Line.SEPARATOR +
+                "                        \"XML\"" + Line.SEPARATOR +
+                "                    ]" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                "            }" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}")), exactly(2)).respond(response().withBody("some_body"));
 
         // then
@@ -941,28 +942,28 @@ public abstract class AbstractClientServerIntegrationTest {
                         request()
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody("{" + System.getProperty("line.separator") +
-                                        "    \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                                        "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                                        "        \"title\": \"S\", " + System.getProperty("line.separator") +
-                                        "        \"GlossList\": {" + System.getProperty("line.separator") +
-                                        "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                                        "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                                        "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                                        "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                                        "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                                        "                        \"GML\", " + System.getProperty("line.separator") +
-                                        "                        \"XML\"" + System.getProperty("line.separator") +
-                                        "                    ]" + System.getProperty("line.separator") +
-                                        "                }, " + System.getProperty("line.separator") +
-                                        "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                                        "            }" + System.getProperty("line.separator") +
-                                        "        }" + System.getProperty("line.separator") +
-                                        "    }" + System.getProperty("line.separator") +
+                                .withBody("{" + Line.SEPARATOR +
+                                        "    \"title\": \"example glossary\", " + Line.SEPARATOR +
+                                        "    \"GlossDiv\": {" + Line.SEPARATOR +
+                                        "        \"title\": \"S\", " + Line.SEPARATOR +
+                                        "        \"GlossList\": {" + Line.SEPARATOR +
+                                        "            \"GlossEntry\": {" + Line.SEPARATOR +
+                                        "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                                        "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                                        "                \"GlossDef\": {" + Line.SEPARATOR +
+                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                                        "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                                        "                        \"GML\", " + Line.SEPARATOR +
+                                        "                        \"XML\"" + Line.SEPARATOR +
+                                        "                    ]" + Line.SEPARATOR +
+                                        "                }, " + Line.SEPARATOR +
+                                        "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                                        "            }" + Line.SEPARATOR +
+                                        "        }" + Line.SEPARATOR +
+                                        "    }" + Line.SEPARATOR +
                                         "}"),
                         headersToIgnore)
         );
@@ -976,28 +977,28 @@ public abstract class AbstractClientServerIntegrationTest {
                                 .setSecure(true)
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody("{" + System.getProperty("line.separator") +
-                                        "    \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                                        "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                                        "        \"title\": \"S\", " + System.getProperty("line.separator") +
-                                        "        \"GlossList\": {" + System.getProperty("line.separator") +
-                                        "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                                        "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                                        "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                                        "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                                        "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                                        "                        \"GML\", " + System.getProperty("line.separator") +
-                                        "                        \"XML\"" + System.getProperty("line.separator") +
-                                        "                    ]" + System.getProperty("line.separator") +
-                                        "                }, " + System.getProperty("line.separator") +
-                                        "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                                        "            }" + System.getProperty("line.separator") +
-                                        "        }" + System.getProperty("line.separator") +
-                                        "    }" + System.getProperty("line.separator") +
+                                .withBody("{" + Line.SEPARATOR +
+                                        "    \"title\": \"example glossary\", " + Line.SEPARATOR +
+                                        "    \"GlossDiv\": {" + Line.SEPARATOR +
+                                        "        \"title\": \"S\", " + Line.SEPARATOR +
+                                        "        \"GlossList\": {" + Line.SEPARATOR +
+                                        "            \"GlossEntry\": {" + Line.SEPARATOR +
+                                        "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                                        "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                                        "                \"GlossDef\": {" + Line.SEPARATOR +
+                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                                        "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                                        "                        \"GML\", " + Line.SEPARATOR +
+                                        "                        \"XML\"" + Line.SEPARATOR +
+                                        "                    ]" + Line.SEPARATOR +
+                                        "                }, " + Line.SEPARATOR +
+                                        "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                                        "            }" + Line.SEPARATOR +
+                                        "        }" + Line.SEPARATOR +
+                                        "    }" + Line.SEPARATOR +
                                         "}"),
                         headersToIgnore)
         );
@@ -2039,31 +2040,31 @@ public abstract class AbstractClientServerIntegrationTest {
                                 .setSecure(true)
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<bookstore>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"COOKING\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Everyday Italian</title>" + System.getProperty("line.separator") +
-                                        "  <author>Giada De Laurentiis</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>30.00</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"CHILDREN\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Harry Potter</title>" + System.getProperty("line.separator") +
-                                        "  <author>J K. Rowling</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>29.99</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"WEB\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Learning XML</title>" + System.getProperty("line.separator") +
-                                        "  <author>Erik T. Ray</author>" + System.getProperty("line.separator") +
-                                        "  <year>2003</year>" + System.getProperty("line.separator") +
-                                        "  <price>31.95</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
+                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<bookstore>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"COOKING\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Everyday Italian</title>" + Line.SEPARATOR +
+                                        "  <author>Giada De Laurentiis</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>30.00</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"CHILDREN\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Harry Potter</title>" + Line.SEPARATOR +
+                                        "  <author>J K. Rowling</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>29.99</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"WEB\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Learning XML</title>" + Line.SEPARATOR +
+                                        "  <author>Erik T. Ray</author>" + Line.SEPARATOR +
+                                        "  <year>2003</year>" + Line.SEPARATOR +
+                                        "  <price>31.95</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
                                         "</bookstore>", Body.Type.STRING)),
                         headersToIgnore)
         );
@@ -2076,31 +2077,31 @@ public abstract class AbstractClientServerIntegrationTest {
                                 .setSecure(true)
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<bookstore>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"COOKING\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Everyday Italian</title>" + System.getProperty("line.separator") +
-                                        "  <author>Giada De Laurentiis</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>30.00</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"CHILDREN\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Harry Potter</title>" + System.getProperty("line.separator") +
-                                        "  <author>J K. Rowling</author>" + System.getProperty("line.separator") +
-                                        "  <year>2005</year>" + System.getProperty("line.separator") +
-                                        "  <price>29.99</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
-                                        "<book category=\"WEB\">" + System.getProperty("line.separator") +
-                                        "  <title lang=\"en\">Learning XML</title>" + System.getProperty("line.separator") +
-                                        "  <author>Erik T. Ray</author>" + System.getProperty("line.separator") +
-                                        "  <year>2003</year>" + System.getProperty("line.separator") +
-                                        "  <price>31.95</price>" + System.getProperty("line.separator") +
-                                        "</book>" + System.getProperty("line.separator") +
-                                        "" + System.getProperty("line.separator") +
+                                .withBody(new StringBody("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<bookstore>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"COOKING\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Everyday Italian</title>" + Line.SEPARATOR +
+                                        "  <author>Giada De Laurentiis</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>30.00</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"CHILDREN\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Harry Potter</title>" + Line.SEPARATOR +
+                                        "  <author>J K. Rowling</author>" + Line.SEPARATOR +
+                                        "  <year>2005</year>" + Line.SEPARATOR +
+                                        "  <price>29.99</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
+                                        "<book category=\"WEB\">" + Line.SEPARATOR +
+                                        "  <title lang=\"en\">Learning XML</title>" + Line.SEPARATOR +
+                                        "  <author>Erik T. Ray</author>" + Line.SEPARATOR +
+                                        "  <year>2003</year>" + Line.SEPARATOR +
+                                        "  <price>31.95</price>" + Line.SEPARATOR +
+                                        "</book>" + Line.SEPARATOR +
+                                        "" + Line.SEPARATOR +
                                         "</bookstore>", Body.Type.STRING)),
                         headersToIgnore)
         );
@@ -2109,28 +2110,28 @@ public abstract class AbstractClientServerIntegrationTest {
     @Test
     public void clientCanCallServerNegativeMatchJsonBodyOnly() {
         // when
-        mockServerClient.when(request().withBody(json("{" + System.getProperty("line.separator") +
-                "    \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                "        \"title\": \"wrong_value\", " + System.getProperty("line.separator") +
-                "        \"GlossList\": {" + System.getProperty("line.separator") +
-                "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                "                        \"GML\", " + System.getProperty("line.separator") +
-                "                        \"XML\"" + System.getProperty("line.separator") +
-                "                    ]" + System.getProperty("line.separator") +
-                "                }, " + System.getProperty("line.separator") +
-                "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                "            }" + System.getProperty("line.separator") +
-                "        }" + System.getProperty("line.separator") +
-                "    }" + System.getProperty("line.separator") +
+        mockServerClient.when(request().withBody(json("{" + Line.SEPARATOR +
+                "    \"title\": \"example glossary\", " + Line.SEPARATOR +
+                "    \"GlossDiv\": {" + Line.SEPARATOR +
+                "        \"title\": \"wrong_value\", " + Line.SEPARATOR +
+                "        \"GlossList\": {" + Line.SEPARATOR +
+                "            \"GlossEntry\": {" + Line.SEPARATOR +
+                "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                "                \"GlossDef\": {" + Line.SEPARATOR +
+                "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                "                        \"GML\", " + Line.SEPARATOR +
+                "                        \"XML\"" + Line.SEPARATOR +
+                "                    ]" + Line.SEPARATOR +
+                "                }, " + Line.SEPARATOR +
+                "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                "            }" + Line.SEPARATOR +
+                "        }" + Line.SEPARATOR +
+                "    }" + Line.SEPARATOR +
                 "}")), exactly(2)).respond(response().withBody("some_body"));
 
         // then
@@ -2142,28 +2143,28 @@ public abstract class AbstractClientServerIntegrationTest {
                         request()
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody("{" + System.getProperty("line.separator") +
-                                        "    \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                                        "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                                        "        \"title\": \"S\", " + System.getProperty("line.separator") +
-                                        "        \"GlossList\": {" + System.getProperty("line.separator") +
-                                        "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                                        "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                                        "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                                        "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                                        "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                                        "                        \"GML\", " + System.getProperty("line.separator") +
-                                        "                        \"XML\"" + System.getProperty("line.separator") +
-                                        "                    ]" + System.getProperty("line.separator") +
-                                        "                }, " + System.getProperty("line.separator") +
-                                        "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                                        "            }" + System.getProperty("line.separator") +
-                                        "        }" + System.getProperty("line.separator") +
-                                        "    }" + System.getProperty("line.separator") +
+                                .withBody("{" + Line.SEPARATOR +
+                                        "    \"title\": \"example glossary\", " + Line.SEPARATOR +
+                                        "    \"GlossDiv\": {" + Line.SEPARATOR +
+                                        "        \"title\": \"S\", " + Line.SEPARATOR +
+                                        "        \"GlossList\": {" + Line.SEPARATOR +
+                                        "            \"GlossEntry\": {" + Line.SEPARATOR +
+                                        "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                                        "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                                        "                \"GlossDef\": {" + Line.SEPARATOR +
+                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                                        "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                                        "                        \"GML\", " + Line.SEPARATOR +
+                                        "                        \"XML\"" + Line.SEPARATOR +
+                                        "                    ]" + Line.SEPARATOR +
+                                        "                }, " + Line.SEPARATOR +
+                                        "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                                        "            }" + Line.SEPARATOR +
+                                        "        }" + Line.SEPARATOR +
+                                        "    }" + Line.SEPARATOR +
                                         "}"),
                         headersToIgnore)
         );
@@ -2176,28 +2177,28 @@ public abstract class AbstractClientServerIntegrationTest {
                                 .setSecure(true)
                                 .withPath(calculatePath("some_path"))
                                 .withMethod("POST")
-                                .withBody("{" + System.getProperty("line.separator") +
-                                        "    \"title\": \"example glossary\", " + System.getProperty("line.separator") +
-                                        "    \"GlossDiv\": {" + System.getProperty("line.separator") +
-                                        "        \"title\": \"S\", " + System.getProperty("line.separator") +
-                                        "        \"GlossList\": {" + System.getProperty("line.separator") +
-                                        "            \"GlossEntry\": {" + System.getProperty("line.separator") +
-                                        "                \"ID\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"SortAs\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + System.getProperty("line.separator") +
-                                        "                \"Acronym\": \"SGML\", " + System.getProperty("line.separator") +
-                                        "                \"Abbrev\": \"ISO 8879:1986\", " + System.getProperty("line.separator") +
-                                        "                \"GlossDef\": {" + System.getProperty("line.separator") +
-                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + System.getProperty("line.separator") +
-                                        "                    \"GlossSeeAlso\": [" + System.getProperty("line.separator") +
-                                        "                        \"GML\", " + System.getProperty("line.separator") +
-                                        "                        \"XML\"" + System.getProperty("line.separator") +
-                                        "                    ]" + System.getProperty("line.separator") +
-                                        "                }, " + System.getProperty("line.separator") +
-                                        "                \"GlossSee\": \"markup\"" + System.getProperty("line.separator") +
-                                        "            }" + System.getProperty("line.separator") +
-                                        "        }" + System.getProperty("line.separator") +
-                                        "    }" + System.getProperty("line.separator") +
+                                .withBody("{" + Line.SEPARATOR +
+                                        "    \"title\": \"example glossary\", " + Line.SEPARATOR +
+                                        "    \"GlossDiv\": {" + Line.SEPARATOR +
+                                        "        \"title\": \"S\", " + Line.SEPARATOR +
+                                        "        \"GlossList\": {" + Line.SEPARATOR +
+                                        "            \"GlossEntry\": {" + Line.SEPARATOR +
+                                        "                \"ID\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"SortAs\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"GlossTerm\": \"Standard Generalized Markup Language\", " + Line.SEPARATOR +
+                                        "                \"Acronym\": \"SGML\", " + Line.SEPARATOR +
+                                        "                \"Abbrev\": \"ISO 8879:1986\", " + Line.SEPARATOR +
+                                        "                \"GlossDef\": {" + Line.SEPARATOR +
+                                        "                    \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", " + Line.SEPARATOR +
+                                        "                    \"GlossSeeAlso\": [" + Line.SEPARATOR +
+                                        "                        \"GML\", " + Line.SEPARATOR +
+                                        "                        \"XML\"" + Line.SEPARATOR +
+                                        "                    ]" + Line.SEPARATOR +
+                                        "                }, " + Line.SEPARATOR +
+                                        "                \"GlossSee\": \"markup\"" + Line.SEPARATOR +
+                                        "            }" + Line.SEPARATOR +
+                                        "        }" + Line.SEPARATOR +
+                                        "    }" + Line.SEPARATOR +
                                         "}"),
                         headersToIgnore)
         );
