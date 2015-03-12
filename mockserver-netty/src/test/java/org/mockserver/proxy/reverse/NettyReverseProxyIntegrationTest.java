@@ -1,4 +1,4 @@
-package org.mockserver.proxy.direct;
+package org.mockserver.proxy.reverse;
 
 import com.google.common.base.Charsets;
 import org.junit.AfterClass;
@@ -8,7 +8,6 @@ import org.mockserver.echo.EchoServer;
 import org.mockserver.proxy.Proxy;
 import org.mockserver.proxy.ProxyBuilder;
 import org.mockserver.socket.PortFactory;
-import org.mockserver.socket.SSLFactory;
 import org.mockserver.streams.IOStreamUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,33 +20,33 @@ import static org.mockserver.test.Assert.assertContains;
 /**
  * @author jamesdbloom
  */
-public class NettyDirectSecureProxyIntegrationTest {
+public class NettyReverseProxyIntegrationTest {
 
-    private final static Logger logger = LoggerFactory.getLogger(NettyDirectSecureProxyIntegrationTest.class);
+    private final static Logger logger = LoggerFactory.getLogger(NettyReverseProxyIntegrationTest.class);
 
-    private final static Integer SERVER_HTTPS_PORT = PortFactory.findFreePort();
-    private final static Integer PROXY_DIRECT_SECURE_PORT = PortFactory.findFreePort();
+    private final static Integer SERVER_HTTP_PORT = PortFactory.findFreePort();
+    private final static Integer PROXY_LOCAL_PORT = PortFactory.findFreePort();
     private static EchoServer echoServer;
     private static Proxy proxy;
 
     @BeforeClass
     public static void setupFixture() throws Exception {
-        logger.debug("SERVER_HTTPS_PORT = " + SERVER_HTTPS_PORT);
-        logger.debug("PROXY_DIRECT_SECURE_PORT = " + PROXY_DIRECT_SECURE_PORT);
+        logger.debug("SERVER_HTTP_PORT = " + SERVER_HTTP_PORT);
+        logger.debug("PROXY_LOCAL_PORT = " + PROXY_LOCAL_PORT);
 
-        // start server
-        echoServer = new EchoServer(SERVER_HTTPS_PORT);
+        // start echo server
+        echoServer = new EchoServer(SERVER_HTTP_PORT);
 
         // start proxy
         proxy = new ProxyBuilder()
-                .withLocalPort(PROXY_DIRECT_SECURE_PORT)
-                .withDirect("127.0.0.1", SERVER_HTTPS_PORT)
+                .withLocalPort(PROXY_LOCAL_PORT)
+                .withRemote("127.0.0.1", SERVER_HTTP_PORT)
                 .build();
     }
 
     @AfterClass
     public static void shutdownFixture() {
-        // stop server
+        // stop echo server
         echoServer.stop();
 
         // stop proxy
@@ -58,7 +57,7 @@ public class NettyDirectSecureProxyIntegrationTest {
     public void shouldForwardRequestsUsingSocketDirectlyHeadersOnly() throws Exception {
         Socket socket = null;
         try {
-            socket = SSLFactory.getInstance().wrapSocket(new Socket("localhost", PROXY_DIRECT_SECURE_PORT));
+            socket = new Socket("localhost", PROXY_LOCAL_PORT);
 
             // given
             OutputStream output = socket.getOutputStream();
@@ -67,7 +66,7 @@ public class NettyDirectSecureProxyIntegrationTest {
             // - send GET request for headers only
             output.write(("" +
                     "GET /test_headers_only HTTP/1.1\r\n" +
-                    "Host: localhost:" + SERVER_HTTPS_PORT + "\r\n" +
+                    "Host: localhost:" + SERVER_HTTP_PORT + "\r\n" +
                     "X-Test: test_headers_only\r\n" +
                     "\r\n"
             ).getBytes(Charsets.UTF_8));
@@ -87,7 +86,7 @@ public class NettyDirectSecureProxyIntegrationTest {
         Socket socket = null;
         try {
 
-            socket = SSLFactory.getInstance().wrapSocket(new Socket("localhost", PROXY_DIRECT_SECURE_PORT));
+            socket = new Socket("localhost", PROXY_LOCAL_PORT);
 
             // given
             OutputStream output = socket.getOutputStream();
@@ -95,7 +94,7 @@ public class NettyDirectSecureProxyIntegrationTest {
             // - send GET request for headers and body
             output.write(("" +
                     "GET /test_headers_and_body HTTP/1.1\r\n" +
-                    "Host: localhost:" + SERVER_HTTPS_PORT + "\r\n" +
+                    "Host: localhost:" + SERVER_HTTP_PORT + "\r\n" +
                     "X-Test: test_headers_and_body\r\n" +
                     "Content-Length:" + "an_example_body".getBytes(Charsets.UTF_8).length + "\r\n" +
                     "\r\n" +
@@ -119,7 +118,7 @@ public class NettyDirectSecureProxyIntegrationTest {
         Socket socket = null;
         try {
 
-            socket = SSLFactory.getInstance().wrapSocket(new Socket("localhost", PROXY_DIRECT_SECURE_PORT));
+            socket = new Socket("localhost", PROXY_LOCAL_PORT);
 
             // given
             OutputStream output = socket.getOutputStream();
@@ -127,7 +126,7 @@ public class NettyDirectSecureProxyIntegrationTest {
             // - send GET request for headers and body
             output.write(("" +
                     "GET /not_found HTTP/1.1\r\n" +
-                    "Host: localhost:" + SERVER_HTTPS_PORT + "\r\n" +
+                    "Host: localhost:" + SERVER_HTTP_PORT + "\r\n" +
                     "\r\n"
             ).getBytes(Charsets.UTF_8));
             output.flush();

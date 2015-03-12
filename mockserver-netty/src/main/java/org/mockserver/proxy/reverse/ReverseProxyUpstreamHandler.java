@@ -1,4 +1,4 @@
-package org.mockserver.proxy.direct;
+package org.mockserver.proxy.reverse;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
@@ -21,11 +21,11 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 
-public class DirectProxyUpstreamHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+public class ReverseProxyUpstreamHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public DirectProxyUpstreamHandler() {
+    public ReverseProxyUpstreamHandler() {
         super(false);
     }
 

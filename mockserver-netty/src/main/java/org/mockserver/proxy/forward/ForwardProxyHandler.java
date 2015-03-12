@@ -44,9 +44,9 @@ class ForwardProxyHandler extends SimpleChannelInboundHandler<HttpRequest> {
     private VerificationSerializer verificationSerializer = new VerificationSerializer();
     private VerificationSequenceSerializer verificationSequenceSerializer = new VerificationSequenceSerializer();
 
-    public ForwardProxyHandler(Proxy server, LogFilter logFilter) {
+    public ForwardProxyHandler(Proxy proxy, LogFilter logFilter) {
         super(false);
-        this.server = server;
+        this.server = proxy;
         this.logFilter = logFilter;
         filters.withFilter(new org.mockserver.model.HttpRequest(), new HopByHopHeaderFilter());
         filters.withFilter(new org.mockserver.model.HttpRequest(), logFilter);

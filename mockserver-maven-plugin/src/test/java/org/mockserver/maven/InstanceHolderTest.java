@@ -13,7 +13,6 @@ import org.mockserver.proxy.Proxy;
 import org.mockserver.proxy.ProxyBuilder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.AnyOf.anyOf;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertNotNull;

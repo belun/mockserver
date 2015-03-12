@@ -1,6 +1,6 @@
 package org.mockserver.proxy;
 
-import org.mockserver.proxy.direct.DirectProxy;
+import org.mockserver.proxy.reverse.ReverseProxy;
 import org.mockserver.proxy.forward.ForwardProxy;
 
 /**
@@ -25,12 +25,12 @@ public class ProxyBuilder {
     }
 
     /**
-     * Configure a direct proxy that forwards all requests from the localPort to the remoteHost and remotePort
+     * Configure a reverse proxy that forwards all requests from the localPort to the remoteHost and remotePort
      *
-     * @param remoteHost the destination hostname for direct forwarding
-     * @param remotePort the destination port for direct forwarding
+     * @param remoteHost the destination hostname for forwarding
+     * @param remotePort the destination port for forwarding
      */
-    public ProxyBuilder withDirect(String remoteHost, Integer remotePort) {
+    public ProxyBuilder withRemote(String remoteHost, Integer remotePort) {
         this.remoteHost = remoteHost;
         this.remotePort = remotePort;
         return this;
@@ -42,7 +42,7 @@ public class ProxyBuilder {
     public Proxy build() {
         if (localPort != null) {
             if (remoteHost != null && remotePort != null) {
-                return new DirectProxy(localPort, remoteHost, remotePort);
+                return new ReverseProxy(localPort, remoteHost, remotePort);
             } else {
                 return new ForwardProxy(localPort);
             }

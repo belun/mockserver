@@ -3,7 +3,7 @@ package org.mockserver.proxy;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockserver.proxy.direct.DirectProxy;
+import org.mockserver.proxy.reverse.ReverseProxy;
 import org.mockserver.proxy.forward.ForwardProxy;
 import org.mockserver.socket.PortFactory;
 
@@ -42,26 +42,26 @@ public class ProxyBuilderTest {
     }
 
     @Test
-    public void shouldConfigureDirectProxy() {
+    public void shouldConfigureReverseProxy() {
         // given
         // - some ports
         Integer port = PortFactory.findFreePort();
-        String directRemoteHost = "random.host";
-        Integer directRemotePort = PortFactory.findFreePort();
+        String remoteHost = "random.host";
+        Integer remotePort = PortFactory.findFreePort();
 
         // when
         Proxy proxy = new ProxyBuilder()
                 .withLocalPort(port)
-                .withDirect(directRemoteHost, directRemotePort)
+                .withRemote(remoteHost, remotePort)
                 .build();
 
         try {
             // then
-            assertThat(proxy, is(instanceOf(DirectProxy.class)));
-            DirectProxy directProxy = (DirectProxy)proxy;
-            assertThat(directProxy.getLocalPort(), is(port));
-            assertThat(directProxy.getRemoteHost(), is(directRemoteHost));
-            assertThat(directProxy.getRemotePort(), is(directRemotePort));
+            assertThat(proxy, is(instanceOf(ReverseProxy.class)));
+            ReverseProxy reverseProxy = (ReverseProxy)proxy;
+            assertThat(reverseProxy.getLocalPort(), is(port));
+            assertThat(reverseProxy.getRemoteHost(), is(remoteHost));
+            assertThat(reverseProxy.getRemotePort(), is(remotePort));
         } finally {
             proxy.stop();
         }

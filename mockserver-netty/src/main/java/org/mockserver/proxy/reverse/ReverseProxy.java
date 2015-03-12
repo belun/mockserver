@@ -1,4 +1,4 @@
-package org.mockserver.proxy.direct;
+package org.mockserver.proxy.reverse;
 
 import com.google.common.util.concurrent.SettableFuture;
 import io.netty.bootstrap.ServerBootstrap;
@@ -22,9 +22,9 @@ import java.util.concurrent.TimeUnit;
  *
  * @author jamesdbloom
  */
-public class DirectProxy implements Proxy {
+public class ReverseProxy implements Proxy {
 
-    private static final Logger logger = LoggerFactory.getLogger(DirectProxy.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReverseProxy.class);
     // proxy
     private final SettableFuture<String> hasStarted = SettableFuture.create();
     // netty
@@ -35,7 +35,7 @@ public class DirectProxy implements Proxy {
     private final String remoteHost;
     private final Integer remotePort;
 
-    public DirectProxy(final Integer localPort, final String remoteHost, final Integer remotePort) {
+    public ReverseProxy(final Integer localPort, final String remoteHost, final Integer remotePort) {
 
         if (localPort == null) {
             throw new IllegalArgumentException("Port must not be null");
@@ -60,8 +60,8 @@ public class DirectProxy implements Proxy {
                             .option(ChannelOption.SO_BACKLOG, 1024)
                             .channel(NioServerSocketChannel.class)
                             .childOption(ChannelOption.AUTO_READ, true)
-                            .childHandler(new DirectProxyUnificationHandler())
-                            .childAttr(HTTP_PROXY, DirectProxy.this)
+                            .childHandler(new ReverseProxyUnificationHandler())
+                            .childAttr(HTTP_PROXY, ReverseProxy.this)
                             .childAttr(REMOTE_SOCKET, new InetSocketAddress(remoteHost, remotePort))
                             .bind(localPort)
                             .addListener(new ChannelFutureListener() {
